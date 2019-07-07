@@ -78,6 +78,7 @@ export default class VerificationPage extends Component {
 
     sendsms() {
         const RandomNumber = Math.floor(Math.random() * 10000) + 1000;
+		console.log(RandomNumber);
         this.setState({verify: RandomNumber});
         const messagetosend = "به Sکوین خوش آمدید.کد فعالسازی :  " + RandomNumber;
         fetch('https://api.sms.ir/users/v1/Message/SendByMobileNumbers', {

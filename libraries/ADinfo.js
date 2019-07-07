@@ -230,7 +230,7 @@ export default class ADinfo extends Component {
                     onFinish={() => alert('Finished')}
                     digitStyle={{backgroundColor: '#FFF', borderWidth: 2, borderColor: '#1CC625'}}
                     digitTxtStyle={{color: '#bec0c6'}}
-                    timeLabelStyle={{color: 'red', fontWeight: 'bold'}}
+                    tisha-regexmeLabelStyle={{color: 'red', fontWeight: 'bold'}}
                     separatorStyle={{color: '#c6bd1a'}}
                     timeToShow={['H', 'M', 'S']}
                     timeLabels={{m: null, s: null}}
