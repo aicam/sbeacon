@@ -204,22 +204,60 @@ export default class More extends React.Component {
                     </View>
                 </ScrollView>
                 <View style={{flexDirection:'row',height:50,backgroundColor:'#f8f8f8',borderWidth:0.5,borderColor:"#707070"}}>
-                    <TouchableOpacity style={{flex:1,marginLeft:25}} onPress={() => this.props.navigation.navigate('Firstpage')}>
-                        <Image source={require('../images/Footer/home.png')} style={{height:30,width:30,marginTop:7}} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('category')}>
-                        <Image source={require('../images/Footer/category_active.png')} style={{height:30,width:30,marginTop:7}} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('miningpage')}>
-                        <Image source={require('../images/Footer/mining.png')} style={{height:33,width:33,marginTop:7}} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('profile')}>
-                        <Image source={require('../images/Footer/profile.png')} style={{height:30,width:30,marginTop:7}} />
-                    </TouchableOpacity>
+                    <View style={{flexDirection:'row',height:50,backgroundColor:'#f8f8f8',width:'100%'}}>
+                        <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('Firstpage')}>
+                            <View style={styles.footerViews}>
+                                <Image source={require('../images/Footer/home.png')} style={{height:24,width:24,marginTop:7}} />
+                                <Text style={{fontSize: 10}}>خانه</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('category')}>
+                            <View style={styles.footerViews}>
+                                <Image source={require('../images/Footer/category_active.png')} style={{height:24,width:24,marginTop:7}} />
+                                <Text style={{fontSize: 10}}>دسته بندی</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('miningpage')}>
+                            <View style={styles.footerViews}>
+                                <Image source={require('../images/Footer/mining.png')} style={{height:24,width:24,marginTop:7}} />
+                                <Text style={{fontSize: 10}}>حفاری</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('profile')}>
+                            <View style={styles.footerViews}>
+                                <Image source={require('../images/Footer/profile.png')} style={{height:24,width:24,marginTop:7}} />
+                                <Text style={{fontSize: 10}}>پروفایل</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         );
     }
 }
 
-
+const styles = StyleSheet.create({
+    footerViews:{
+        alignItems:'center',
+        justifyContent: 'center'
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    welcome: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+    },
+    scroll: {
+        flex: 1,
+        backgroundColor: '#f0f0f0',
+        margin: 10,
+    },
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
+    },
+});
