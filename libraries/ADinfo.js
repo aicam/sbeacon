@@ -1,21 +1,20 @@
-import React, {Component}
-    from 'react';
+import React, {Component} from 'react';
 import {
     Text,
     View,
     Image,
     TextInput,
+    Button,
     ScrollView,
     TouchableOpacity,
     Alert,
     ActivityIndicator, AsyncStorage,
     KeyboardAvoidingView,
     ImageBackground,
-    Platform, StyleSheet
+    StyleSheet
 } from 'react-native'
 import Share from 'react-native-share';
 import CountDown from 'react-native-countdown-component';
-import LinearGradient from 'react-native-linear-gradient';
 
 export default class ADinfo extends Component {
     constructor() {
@@ -99,7 +98,6 @@ export default class ADinfo extends Component {
             Alert.alert(error)
         });
     }
-
     _changeText(id){
         switch (id) {
             case 1:
@@ -117,7 +115,6 @@ export default class ADinfo extends Component {
         }
         this.setState({text_state: id});
     }
-
     async submit_comment(comment) {
         let username = await this.getUsername();
         console.log(username + " uss");
@@ -155,7 +152,11 @@ export default class ADinfo extends Component {
 
     render() {
         return (
-
+            <KeyboardAvoidingView
+                behavior={"padding"}
+                style={styles.container}
+                enabled
+            >
             <View style={{flexDirection: 'column', flex: 1, display: 'flex'}}>
                 {this.state.loaded &&
                 <ScrollView style={{flex:1}}>
@@ -230,17 +231,15 @@ export default class ADinfo extends Component {
                                         Alert.alert(" شما هنوز به سطح " + this.state.data.min_level + " نرسیده اید.")
                                 }
                             }}>
-                                <LinearGradient colors={['#0078ff', '#00edff']} start={{ x: 0, y: 1 }} end={{ x: 1, y: 1 }} style={{
+                                <View style={{
+                                    marginTop: 10,
                                     overflow: 'hidden',
                                     borderRadius: 10,
-                                    marginTop: 10,
                                     alignItems: 'center',
-                                    justifyContent: 'center',
                                     width: '100%',
                                     height: 30,
+                                    backgroundColor: 'blue'
                                 }}>
-
-                                <View>
                                     {this.state.data.Scoin_available == 1 && <Text style={{
                                         textAlign: 'right',
                                         fontSize: 20,
@@ -254,7 +253,6 @@ export default class ADinfo extends Component {
                                         fontFamily: 'IRANSansMobile'
                                     }}>صفحه تبلیغ</Text>}
                                 </View>
-                                </LinearGradient>
                             </TouchableOpacity>
                         </View>
                         <Image source={{uri: this.state.data.pic}}
@@ -359,11 +357,7 @@ export default class ADinfo extends Component {
                     </View>
 
                     {/* related */}
-                    <KeyboardAvoidingView
-                        behavior={"padding"}
-                        style={Platform.OS === 'ios' ?  {flex: 1,}  : {flex: 1,}}
-                        enabled
-                    >
+
                     <View style={{marginTop: 20, borderWidth: 1, borderColor: '#f5f1f5'}}>
                         <ScrollView
                             horizontal={true}
@@ -494,7 +488,7 @@ export default class ADinfo extends Component {
                         </ScrollView>
                     </View>
                     {/* related*/}
-                    </KeyboardAvoidingView>
+
 
 
                     <View style={{flexDirection: 'column', flex: 2}}>
@@ -514,23 +508,17 @@ export default class ADinfo extends Component {
                                 <Text style={{marginLeft: 20, fontSize: 20}}>{item.comment}</Text>
                             </View>)}
                         <View style={{flexDirection: 'row', justifyContent: 'flex-end', borderEndWidth: 2}}>
-                            <TextInput style={{fontSize: 20, flex: 8, marginRight: 5, }} placeholder="نظر خود را بنویسید"
+                            <TextInput style={{fontSize: 20}} placeholder="نظر خود را بنویسید"
                                        onChangeText={(text) => {
                                            this.setState({com: text})
                                        }}/>
-
                             <View style={{
                                 backgroundColor: '#66a3ff',
                                 borderRadius: 10,
-                                marginRight: 3,
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                flex: 1,
-
+                                color: '#cce0ff',
+                                marginRight: 3
                             }}>
-                                <TouchableOpacity onPress={() => this.submit_comment(this.state.com)}>
-                                    <Text style={{color: '#FFFFFF'}}>ثبت</Text>
-                                </TouchableOpacity>
+                                <Button title="ثبت" onPress={() => this.submit_comment(this.state.com)}/>
                             </View>
                         </View>
                         <View style={{alignItems: "center"}}>
@@ -550,64 +538,46 @@ export default class ADinfo extends Component {
                     </View>
                 </ScrollView>
                 }
-                {/* footer */}
-                <View style={{flexDirection:'row',height:50,backgroundColor:'#f8f8f8',borderWidth:0.5,borderColor:"#707070"}}>
-                    <View style={{flexDirection:'row',height:50,backgroundColor:'#f8f8f8',width:'100%'}}>
-                        <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('Firstpage')}>
-                            <View style={styles.footerViews}>
-                                <Image source={require('../images/Footer/home.png')} style={{height:24,width:24,marginTop:7}} />
-                                <Text style={{fontSize: 10}}>خانه</Text>
-                            </View>
+
+                <View style={{
+                    flexDirection: 'row',
+                    height: 50,
+                    backgroundColor: '#f8f8f8',
+                    borderWidth: 0.5,
+                    borderColor: "#707070"
+                }}>
+                    <View style={{
+                        flexDirection: 'row',
+                        height: 50,
+                        backgroundColor: '#f8f8f8',
+                        marginLeft: 28,
+                        width: '100%'
+                    }}>
+                        <TouchableOpacity style={{flex: 1}} onPress={() => this.props.navigation.navigate('Firstpage')}>
+                            <Image source={require('../images/Footer/home.png')}
+                                   style={{height: 30, width: 30, marginTop: 7}}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('category')}>
-                            <View style={styles.footerViews}>
-                                <Image source={require('../images/Footer/category_active.png')} style={{height:24,width:24,marginTop:7}} />
-                                <Text style={{fontSize: 10}}>دسته بندی</Text>
-                            </View>
+                        <TouchableOpacity style={{flex: 1}} onPress={() => this.props.navigation.navigate('category')}>
+                            <Image source={require('../images/Footer/category_active.png')}
+                                   style={{height: 30, width: 30, marginTop: 7}}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('miningpage')}>
-                            <View style={styles.footerViews}>
-                                <Image source={require('../images/Footer/mining.png')} style={{height:24,width:24,marginTop:7}} />
-                                <Text style={{fontSize: 10}}>حفاری</Text>
-                            </View>
+                        <TouchableOpacity style={{flex: 1}}
+                                          onPress={() => this.props.navigation.navigate('miningpage')}>
+                            <Image source={require('../images/Footer/mining.png')}
+                                   style={{height: 33, width: 33, marginTop: 7}}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('profile')}>
-                            <View style={styles.footerViews}>
-                                <Image source={require('../images/Footer/profile.png')} style={{height:24,width:24,marginTop:7}} />
-                                <Text style={{fontSize: 10}}>پروفایل</Text>
-                            </View>
+                        <TouchableOpacity style={{flex: 1}} onPress={() => this.props.navigation.navigate('profile')}>
+                            <Image source={require('../images/Footer/profile.png')}
+                                   style={{height: 30, width: 30, marginTop: 7}}/>
                         </TouchableOpacity>
                     </View>
                 </View>
             </View>
-
-
+            </KeyboardAvoidingView>
         );
     }
 }
-
 const styles = StyleSheet.create({
-    footerViews:{
-        alignItems:'center',
-        justifyContent: 'center'
-    },
     container: {
         flex: 1,
-        flexDirection: 'row'
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    scroll: {
-        flex: 1,
-        backgroundColor: '#f0f0f0',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-});
+    }});
