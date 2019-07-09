@@ -122,7 +122,7 @@ export default class UserProfile extends React.Component {
                                        style={{width: 35, height: 35, marginRight: 5}}/>
                             </View>
                             <TouchableOpacity
-                                onPress={() => this.props.navigation.navigate('webview', {url: 'http://parsbeacon.ir/requests/invitefriend?user=' + this.state.username})}>
+                                onPress={() => this.props.navigation.navigate('Invitation')}>
                                 <View style={{
                                     flexDirection: 'row',
                                     justifyContent: 'space-between',
