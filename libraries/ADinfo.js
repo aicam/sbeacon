@@ -79,11 +79,14 @@ export default class ADinfo extends Component {
             )
         });
     }
-
+    _setUsername(user){
+        this.setState({username: user});
+    }
     async componentDidMount() {
         await this._change_ad_state(this.props.ad_id);
         await this.get_ad_data();
         const username = await this.getUsername();
+        this._setUsername(username);
         const page_url = "http://parsbeacon.ir/requests/userData?username=" + username;
         fetch(page_url)
             .then((response) => response.json()
@@ -222,7 +225,7 @@ export default class ADinfo extends Component {
                             </View>
                             <TouchableOpacity onPress={() => {
                                 if (this.state.data.Scoin_available) {
-                                    this.props.navigation.navigate('webview', {url: 'http://parsbeacon.ir/requests/Buy?ad_id=' + this.state.data.id})
+                                    this.props.navigation.navigate('webview', {url: 'http://parsbeacon.ir/requests/Buy?ad_id=' + this.state.data.id + '&userID=' + this.state.username})
                                 } else {
                                     if (this.state.data.min_level < this.state.level)
                                         this.props.navigation.navigate('webview', {url: 'http://parsbeacon.ir/requests/foreign_ad?ad_id=' + this.state.data.id})
