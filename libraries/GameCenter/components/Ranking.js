@@ -7,7 +7,7 @@ export default class Ranking extends React.Component {
             <View style={styles.container}>
                 <View style={styles.imagestyle}>
                     <Text>1.  </Text>
-                    <Image source={require('../assets/a1_1.png')} />
+                    <Image source={require('../asset/a1_1.png')} />
                 </View>
                 <Text style={styles.text} >aicam</Text>
                 <Text style={styles.text} >4256</Text>

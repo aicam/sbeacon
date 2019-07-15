@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, ScrollView, Modal, TouchableOpacity, Button, Image } from 'react-native';
 import FadeInView from './components/FadeInView'
 // You can import from local files
-import AssetExample from './components/AssetExample';
+import PageTtile from './components/PageTitle';
 import Ranking from './components/Ranking';
 // or any pure javascript modules available in npm
 import { Card } from 'react-native-paper';
@@ -45,12 +45,12 @@ export default class GameCenterView extends React.Component {
                     </Modal>
 
                     <Card>
-                        <AssetExample />
+                        <PageTtile />
                     </Card>
                     <Card>
                         <Text style={styles.header}>Medals</Text>
                         <View style={{flexDirection:'row',marginTop:10,justifyContent:'center',paddingBottom:15}}>
-                            <Image source={require('./assets/a1_1.png')} />
+                            <Image source={require('./asset/a1_1.png')} />
                         </View>
                     </Card>
                     <Card style={styles.splitUp}>

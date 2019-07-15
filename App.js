@@ -42,7 +42,8 @@ import Webview from './libraries/Webview'
 import Search from './libraries/Search'
 import Firstheader from './libraries/First_header'
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import Invitation from './libraries/Invitation/Invitation'
+import Invitation from './libraries/Invitation/Invitation';
+import GameCenterView from './libraries/GameCenter/GameCenterView';
 
 //var PushNotification = require('react-native-push-notification');
 type Props = {};
@@ -375,6 +376,7 @@ const AppNavigator = createStackNavigator({
         categoryads : CategoryAD,
         adinfo : AdvertisementData,
         more : MoreData,
+        gamecenter: GameCenterView,
         webview : WebViewPage,
         searchdata : SearchData,
         Invitation : Invitation,

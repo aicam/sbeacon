@@ -98,7 +98,7 @@ export default class MiningPage extends React.Component {
                                     </ImageBackground>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={{marginTop:20}}
-                                                  onPress={() => this.props.navigation.navigate('webview',{url : 'http://parsbeacon.ir/requests/games?username=' + this.state.username})}>
+                                                  onPress={() => this.props.navigation.navigate('gamecenter')}>
                                     <ImageBackground source={require('../../images/game_background.png')} style={{height:120,width:120,marginRight:10}} >
                                     </ImageBackground>
                                 </TouchableOpacity>
