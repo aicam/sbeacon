@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, ImageBackground, TextInput, TouchableOpacity, Animated} from 'react-native'
 
 import {createStackNavigator, createAppContainer} from 'react-navigation';
+import {Button} from "react-native-elements";
 class FadeInView extends React.Component {
     state = {
         fadeAnim: new Animated.Value(0),  // Initial value for opacity: 0
@@ -59,11 +60,13 @@ export default class GetPhonenumber extends Component {
                             this.setState({phonenumber: text});
                         }}
                     />
-                    <TouchableOpacity onPress={() => {
+                    <Button onPress={() => {
                         this.props.navigation.navigate('verificationpage', {phone: this.state.phonenumber})
-                    }}>
-                        <Image source={require('../images/register/submit.png')} style={{width:104,height:52}}/>
-                    </TouchableOpacity>
+                    }}
+                            titleStyle={{fontSize: 25, fontFamily: 'IRANSansMobile'}}
+                            buttonStyle={{height: 60, width: 200, backgroundColor: '#5CC3FE'}}
+                            title="تـأیید"
+                    />
                 </View>
                     <View style={{alignItems:'center'}}>
                 <Image source={require('../images/register/phone.png')}

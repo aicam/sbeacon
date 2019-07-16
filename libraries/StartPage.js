@@ -78,10 +78,9 @@ export default class StartPage extends Component {
                                     this.props.navigation.navigate('phonepage');
                                 }
                             }}
-                                    titleStyle={{fontSize:20 , fontFamily: 'IRANSansMobile'}}
-                                    buttonStyle={{height:60 , width:200}}
+                                    titleStyle={{fontSize: 20, fontFamily: 'IRANSansMobile'}}
+                                    buttonStyle={{height: 60, width: 200, backgroundColor: '#7CCFFF'}}
                                     title="ثبت نام"
-                                    buttonStyle={{backgroundColor:'#7CCFFF'}}
                             />
                             <Button onPress={() => {
                                 if (goHomepage) {
@@ -90,9 +89,8 @@ export default class StartPage extends Component {
                                     this.props.navigation.navigate('phonepage');
                                 }
                             }}
-                                    buttonStyle={{borderColor:'#007DC4'}}
-                                    titleStyle={{fontSize:20 , fontFamily: 'IRANSansMobile'}}
-                                    buttonStyle={{height:60 , width:200}}
+                                    titleStyle={{fontSize: 20, fontFamily: 'IRANSansMobile'}}
+                                    buttonStyle={{height: 60, width: 200, borderColor: '#007DC4'}}
                                     title="ورود"
                                     type="outline"
                             />

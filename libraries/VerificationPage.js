@@ -1,8 +1,19 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, ImageBackground, TextInput, Alert, AsyncStorage,TouchableOpacity} from 'react-native'
+import {
+    Text,
+    View,
+    StyleSheet,
+    Image,
+    ImageBackground,
+    TextInput,
+    Alert,
+    AsyncStorage,
+    TouchableOpacity
+} from 'react-native'
 import FadeInView from './FadeInView'
 
 import {createStackNavigator, createAppContainer} from 'react-navigation';
+import {Button} from "react-native-elements";
 
 export default class VerificationPage extends Component {
     async storeUsername(username) {
@@ -53,9 +64,11 @@ export default class VerificationPage extends Component {
             this.addcontact();
         });
     }
-    _set_phonenumber(phone){
-        this.setState({'phonenumber' : phone})
+
+    _set_phonenumber(phone) {
+        this.setState({'phonenumber': phone})
     }
+
     addcontact() {
         fetch('https://api.sms.ir/users/v1/Contacts/AddContacts', {
             method: 'POST',
@@ -78,7 +91,7 @@ export default class VerificationPage extends Component {
 
     sendsms() {
         const RandomNumber = Math.floor(Math.random() * 10000) + 1000;
-		console.log(RandomNumber);
+        console.log(RandomNumber);
         this.setState({verify: RandomNumber});
         const messagetosend = "به Sکوین خوش آمدید.کد فعالسازی :  " + RandomNumber;
         fetch('https://api.sms.ir/users/v1/Message/SendByMobileNumbers', {
@@ -94,7 +107,7 @@ export default class VerificationPage extends Component {
             }),
         }).then((response) => {
             response.json().then((message) => {
-                if(!message.IsSuccessful){
+                if (!message.IsSuccessful) {
                     Alert.alert("مشکلی در ارسال پیامک پیش آمده، لطفا تمامی فیلد ها را با حروف انگلیسی پر کنید.")
                 }
             })
@@ -139,25 +152,28 @@ export default class VerificationPage extends Component {
         }
         return (
             <View style={{flex: 1, justifyContent: 'space-between', alignItems: 'center'}}>
-                <ImageBackground source={require('../images/register/header.png')} style={{height:120,width:'100%',resizeMethod: 'scale'}}/>
+                <ImageBackground source={require('../images/register/header.png')}
+                                 style={{height: 120, width: '100%', resizeMethod: 'scale'}}/>
                 <View style={{marginBottom: 50, alignItems: 'center'}}>
                     <TextInput
-                        style={{height: 100, fontSize: 25,marginBottom:30,textAlign: 'center',width:200}}
+                        style={{height: 100, fontSize: 25, marginBottom: 30, textAlign: 'center', width: 200}}
                         placeholder="Activation Code"
                         onChangeText={(text) => this.setState({verificationcode: text})}
                     />
-                    <TouchableOpacity onPress={() => {
+                    <Button onPress={() => {
                         if (this.state.verificationcode == this.state.verify) {
                             this._check_registered();
-                        }else {
+                        } else {
                             Alert.alert('کد وارد شده صحیح نمیباشد')
                         }
-                    }}>
-                        <Image source={require('../images/register/submit.png')} style={{width:104,height:52}}/>
-                    </TouchableOpacity>
+                    }}
+                            titleStyle={{fontSize: 25, fontFamily: 'IRANSansMobile'}}
+                            buttonStyle={{height: 60, width: 200, backgroundColor: '#5CC3FE'}}
+                            title="تـأیید"
+                    />
                 </View>
                 <Image source={require('../images/register/sms.png')}
-                       style={{resizeMode: 'contain', maxWidth: 169, maxHeight: 169,marginBottom:110}}/>
+                       style={{resizeMode: 'contain', maxWidth: 169, maxHeight: 169, marginBottom: 110}}/>
             </View>
 
         );
