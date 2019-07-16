@@ -49,7 +49,7 @@ export default class Header extends Component {
                 <View style={styles.centerview}>
                     <Image source={require('../images/scoin.png')} style={{width: 28, height: 28}}/>
                     <View style={{marginTop: '5%'}}>
-                        <Text style={{}}>{this.state.Scoin} </Text>
+                        <Text style={{}}>{' ' + this.state.Scoin} </Text>
                     </View>
                 </View>
                 <View style={styles.rightview}>

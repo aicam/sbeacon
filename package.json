@@ -17,6 +17,7 @@
     "react-native-background-timer": "^2.1.1",
     "react-native-countdown-component": "^2.2.0",
     "react-native-elements": "^1.1.0",
+    "react-native-fontawesome": "^6.0.1",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-input-scroll-view": "^1.9.1",
     "react-native-linear-gradient": "^2.5.4",
