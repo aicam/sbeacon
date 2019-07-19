@@ -87,7 +87,7 @@ export default class ADinfo extends Component {
         await this.get_ad_data();
         const username = await this.getUsername();
         this._setUsername(username);
-        const page_url = "http://parsbeacon.ir/requests/userData?username=" + username;
+        const page_url = "http://parsbeacon.ir/requests/userData?username=" + this.state.username;
         fetch(page_url)
             .then((response) => response.json()
                 .then((responseJson) => {

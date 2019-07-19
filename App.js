@@ -24,7 +24,8 @@ import {
     AppState, TextInput,
     TouchableOpacity
 } from 'react-native';
-import Header from "./libraries/Header";
+import { Header } from "react-native-elements"
+import HeaderView from "./libraries/HeaderView";
 import Listinview from "./libraries/Listinview";
 import StartPage from "./libraries/StartPage"
 import GetPhonenumber from "./libraries/GetPhonenumber"
@@ -40,7 +41,6 @@ import More from './libraries/More'
 import ADinfo from './libraries/ADinfo'
 import Webview from './libraries/Webview'
 import Search from './libraries/Search'
-import Firstheader from './libraries/First_header'
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import Invitation from './libraries/Invitation/Invitation';
 import GameCenterView from './libraries/GameCenter/GameCenterView';
@@ -120,7 +120,7 @@ class PhonePage extends React.Component{
 class WebViewPage extends Component{
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <Header navigation={navigation}/>,
+            headerTitle: <HeaderView navigation={navigation}/>,
             headerLeft: null
         }
     };
@@ -135,7 +135,7 @@ class WebViewPage extends Component{
 class AdvertisementData extends React.Component{
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <Header navigation={navigation}/>,
+            headerTitle: <HeaderView navigation={navigation}/>,
             headerLeft: null
         }
     };
@@ -151,7 +151,7 @@ class AdvertisementData extends React.Component{
 class MoreData extends React.Component{
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <Header navigation={navigation}/>,
+            headerTitle: <HeaderView navigation={navigation}/>,
             headerLeft: null
         }
     };
@@ -167,7 +167,7 @@ class MoreData extends React.Component{
 class SearchData extends Component{
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <Header navigation={navigation}/>,
+            headerTitle: <HeaderView navigation={navigation}/>,
             headerLeft: null
         }
     };
@@ -182,7 +182,7 @@ class SearchData extends Component{
 class Profile extends React.Component{
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <Header navigation={navigation}/>,
+            headerTitle: <HeaderView navigation={navigation}/>,
             headerLeft: null
         }
     };
@@ -195,7 +195,7 @@ class Profile extends React.Component{
 class Mining extends React.Component{
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <Header navigation={navigation}/>,
+            headerTitle: <HeaderView navigation={navigation}/>,
             headerLeft: null
         }
     };
@@ -208,7 +208,7 @@ class Mining extends React.Component{
 class CategoryAD extends React.Component{
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <Header navigation={navigation}/>,
+            headerTitle: <HeaderView navigation={navigation}/>,
             headerLeft: null
         }
     };
@@ -230,7 +230,7 @@ class Categories extends React.Component{
     }
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <Header navigation={navigation}/>,
+            headerTitle: <HeaderView navigation={navigation}/>,
             headerLeft: null
         }
     };
@@ -297,12 +297,12 @@ class FirstPage extends React.Component{
             let token = await AsyncStorage.getItem('username');
             return token;
         } catch (error) {
-            Alert.alert(error);
+            Alert.alert(error.toString());
         }
     }
     static navigationOptions = ({navigation}) => {
         return {
-            headerTitle: <Header navigation={navigation}/>,
+            headerTitle: <HeaderView navigation={navigation}/>,
             headerLeft: null
         }
     };
@@ -355,7 +355,7 @@ class Mainpage extends React.Component{
     render() {
         return (
             <View>
-                <Header/>
+                <HeaderView/>
                 <Listinview/>
             </View>
         );
@@ -400,7 +400,7 @@ export default class App extends React.Component<Props> {
             let token = await AsyncStorage.getItem('username');
             return token;
         } catch (error) {
-            Alert.alert(error);
+            Alert.alert(error.toString());
         }
     }
     constructor(props) {

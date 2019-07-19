@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input , Button} from 'react-native-elements';
-import Header from "../Header";
+import HeaderView from "../HeaderView";
 
 export default class Invitation extends Component {
     async getUsername() {
@@ -38,7 +38,7 @@ export default class Invitation extends Component {
         navigation
     }) => {
         return {
-            headerTitle: < Header navigation = {
+            headerTitle: < HeaderView navigation = {
                 navigation
             }
             />,

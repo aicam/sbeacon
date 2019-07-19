@@ -6,11 +6,11 @@ export default class Event extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{borderWidth:0.5,padding:15,borderRadius:15}}>
-                    <Text style={styles.title}>title</Text>
-                    <Text style={styles.award}>award</Text>
+                <View style={{borderWidth:0.5,padding:15,borderRadius:15,backgroundColor:'#f2f2f2'}}>
+                    <Text style={styles.title}>{this.props.title}</Text>
+                    <Text style={styles.award}>{this.props.award}</Text>
                     <CountDown
-                        until={10}
+                        until={this.props.time}
                         size={15}
                         timeToShow={['H', 'M', 'S']}
                         timeLabels={{m: null, s: null}}

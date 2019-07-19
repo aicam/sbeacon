@@ -7,23 +7,23 @@ export default class EventModal extends React.Component {
         return (
             <ImageBackground style={styles.topview} source={require('../asset/modalbackground.jpg')}>
                 <View style={{marginTop:20,marginBottom:30}} >
-                    <Text style={styles.title}>رکورد پک من</Text>
-                    <Text style={styles.description}>پس از اتمام مسابفه به نفرات اول تا پنجم یک کیر هدیه داده میشود</Text >
+                    <Text style={styles.title}>{this.props.title}</Text>
+                    <Text style={styles.description}>{this.props.description}</Text >
                     <FadeInView>
                         <View style={styles.giftview}>
-                            <Text style={styles.gifttext}>یک عدد کیر</Text>
+                            <Text style={styles.gifttext}>{this.props.award}</Text>
                             <Image source={require('../asset/gift.png')} style={{width:54,height:54}} />
                         </View>
                     </FadeInView>
                     <FadeInView>
                         <View style={styles.giftview}>
-                            <Text style={styles.gifttext}>500</Text>
+                            <Text style={styles.gifttext}>{this.props.cost}</Text>
                             <Image source={require('../../../images/scoin.png')} style={{width:54,height:54}} />
                         </View>
                     </FadeInView>
                 </View>
                 <CountDown
-                    until={10}
+                    until={this.props.time}
                     size={30}
                     timeToShow={['H', 'M', 'S']}
                     timeLabels={{h: 'ساعت',m: 'دقیقه', s: 'ثانیه'}}

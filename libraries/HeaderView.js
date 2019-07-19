@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, AsyncStorage, Alert, TouchableOpacity} from 'react-native'
 
-export default class Header extends Component {
+export default class HeaderView extends Component {
     constructor() {
         super();
         this.state = {
@@ -16,7 +16,7 @@ export default class Header extends Component {
             let token = await AsyncStorage.getItem('username');
             return token;
         } catch (error) {
-            Alert.alert(error);
+            Alert.alert(error.toString());
         }
     }
 
@@ -58,7 +58,7 @@ export default class Header extends Component {
                     </View>
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate('webview', {url: 'http://parsbeacon.ir/requests/notification?username=' + this.state.username})}>
-                        <Image style={styles.alert} source={require('../images/alert.png')}/>
+                        <Image style={styles.alertview} source={require('../images/alert.png')}/>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -67,38 +67,32 @@ export default class Header extends Component {
 }
 const styles = StyleSheet.create({
     container: {
-        marginTop: '5%',
-        marginLeft: '2%',
-        marginRight: '2%',
         flexDirection: 'row',
-        paddingBottom: 5
+        justifyContent:'space-between',
+        width:'100%'
     },
     transfer: {
-        marginLeft: 10,
         height: 28,
         width: 35,
     },
     level: {
         height: 28,
         width: 25,
-        marginLeft: 10
     },
-    alert: {
+    alertview: {
         width: 28,
         height: 28
     },
     rightview: {
+        marginRight: 5,
         flexDirection: 'row',
-        marginLeft: '35%'
     },
     centerview: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft: '18%'
     },
     leftview: {
+        marginLeft: 5,
         flexDirection: 'row',
-        marginLeft: '1%'
-
     }
 });
