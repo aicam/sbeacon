@@ -86,7 +86,7 @@ export default class GameCenterView extends React.Component {
                 });
                 this.setState({loaded: true});
             });
-        });
+        }).catch(e => {alert(e.toString())});
     }
 
     attend() {
@@ -99,7 +99,7 @@ export default class GameCenterView extends React.Component {
                     alert("شما قبلا در این مسابقه ثبت نام کردید");
                 }
             })
-        )
+        ).catch(e => {alert(e.toString())});
     }
 
     render() {
@@ -131,13 +131,17 @@ export default class GameCenterView extends React.Component {
                         </View>
                     </Modal>
 
-                    <Card style={styles.cardStyles}>
+                    <Card style={[styles.cardStyles,{marginBottom:35}]}>
+                        <LinearGradient colors={['#fc00ff', '#00dbde']} start={{x: 1, y: 0}} end={{x: 0, y: 1}}>
                         <PageTtile/>
+                        </LinearGradient>
                     </Card>
-                    <Card style={styles.cardStyles}>
+                    <Card style={[styles.cardStyles]}>
                         <LinearGradient colors={['#fc4a1a', '#f7b733']} start={{x: 0, y: 0}} end={{x: 0, y: 1}}>
                         <Text style={styles.header}>Medals</Text>
                         </LinearGradient>
+                    </Card>
+                    <Card style={[styles.cardStyles,{marginTop:8}]}>
                         <View
                             style={{flexDirection: 'row', marginTop: 10, justifyContent: 'center', paddingBottom: 15}}>
                             {this.state.medals.map(item => <Image style={{width: 35, height: 35}}
@@ -147,10 +151,13 @@ export default class GameCenterView extends React.Component {
                     <Card style={[styles.splitUp,styles.cardStyles]}>
                         <FadeInView>
                             <LinearGradient
-                                colors={[this.state.timer % 2 === 0 ? '#52c234' : '#000046', this.state.timer % 2 === 0 ? '#061700' : '#1CB5E0']}
+                                colors={[this.state.timer % 2 === 0 ? '#52c234' : '#1CB5E0', this.state.timer % 2 === 0 ? '#061700' : '#000046']}
                                 start={{x: 0, y: 0}} end={{x: 0, y: 1}}>
                                 <Text style={styles.header}>{this.state.ranking_title[this.state.timer % 2]}</Text>
                             </LinearGradient>
+                        </FadeInView>
+                        </Card>
+                    <Card style={[styles.cardStyles,{marginTop:8}]} >
                             {this.state.timer % 2 === 0 && this.state.weekly_rank.map((item, index) =>
                                 <Ranking username={item.username.toString()}
                                          rate={item.rate.toString()}
@@ -163,14 +170,16 @@ export default class GameCenterView extends React.Component {
                                          rate={item.rate.toString()}
                                          rank={item.counter.toString()}
                                          mode={1}
-                                         in={index}/>
+                                         in={index}
+                                key={index}/>
                             )}
-                        </FadeInView>
                     </Card>
                     <Card style={[styles.splitUp,styles.cardStyles]}>
                         <LinearGradient colors={['#C04848', '#480048']} start={{x: 0, y: 0}} end={{x: 0, y: 1}}>
                             <Text style={styles.header}>Events</Text>
                         </LinearGradient>
+                    </Card>
+                    <Card style={[styles.cardStyles,{marginTop:8}]} >
                         <FadeInView>
                             <ScrollView horizontal={true}>
                                 {this.state.events.map((item, index) =>
@@ -185,7 +194,6 @@ export default class GameCenterView extends React.Component {
                                 )}
                             </ScrollView>
                         </FadeInView>
-
                     </Card>
                 </ScrollView>
                 }
@@ -202,7 +210,7 @@ const styles = StyleSheet.create({
         padding: 8,
     },
     splitUp: {
-        marginTop: 20
+        marginTop: 40
     },
     header: {
         textAlign: 'center',

@@ -30,7 +30,7 @@ export default class HeaderView extends Component {
                     level: jsondata.level
                 });
             })
-        })
+        }).catch(e => {alert(e.toString())})
     }
 
     render() {
