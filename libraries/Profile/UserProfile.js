@@ -17,20 +17,22 @@ export default class UserProfile extends React.Component {
         super();
         this.state = {
             username: "",
-            level : 0,
-            scoin : 0,
-            name : ''
+            level: 0,
+            scoin: 0,
+            name: ''
         }
     }
-    async removeusername(){
+
+    async removeusername() {
         try {
             await AsyncStorage.removeItem('username')
-        }catch (e) {
+        } catch (e) {
             Alert.alert(e);
         }
         Alert.alert("لطفا برنامه را یک بار بسته و دوباره باز کنید")
         this.props.navigation.navigate('startsignup')
     }
+
     async getUsername() {
         try {
             let token = await AsyncStorage.getItem('username');
@@ -39,19 +41,21 @@ export default class UserProfile extends React.Component {
             Alert.alert(error);
         }
     }
+
     async componentDidMount() {
         let user = await this.getUsername();
 
-        fetch('http://parsbeacon.ir/requests/get_profile?username=' + user).then((response) =>{
+        fetch('http://parsbeacon.ir/requests/get_profile?username=' + user).then((response) => {
             response.json().then((responsejson) => {
                 this.setState({
-                    name : responsejson.name,
-                    award : responsejson.award,
-                    scoin : responsejson.scoin
+                    name: responsejson.name,
+                    award: responsejson.award,
+                    scoin: responsejson.scoin
                 })
             })
         }).catch((err) => Alert.alert(err))
     }
+
     render() {
         return (
             <View style={{flex: 1}}>
@@ -116,7 +120,7 @@ export default class UserProfile extends React.Component {
                                     textAlign: 'right',
                                     color: '#392613',
                                     marginTop: 20
-                                    ,fontFamily:'IRANSansMobile'
+                                    , fontFamily: 'IRANSansMobile'
                                 }}>سطح</Text>
                                 <Image source={require('../../images/logos/level.png')}
                                        style={{width: 35, height: 35, marginRight: 5}}/>
@@ -137,14 +141,14 @@ export default class UserProfile extends React.Component {
                                         marginRight: 22,
                                         textAlign: 'right',
                                         color: '#392613',
-                                        marginTop: 20,fontFamily:'IRANSansMobile'
+                                        marginTop: 20, fontFamily: 'IRANSansMobile'
                                     }}>دعوت دوستان</Text>
                                     <Image source={require('../../images/logos/megaphone.png')}
                                            style={{width: 35, height: 35, marginRight: 8}}/>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity
-                                onPress={() => this.props.navigation.navigate('webview', {url: 'http://parsbeacon.ir/requests/invitefriend?user=' + this.state.username})}>
+                                onPress={() => this.props.navigation.navigate('EventsStatus')}>
                                 <View style={{
                                     flexDirection: 'row',
                                     justifyContent: 'space-between',
@@ -159,7 +163,7 @@ export default class UserProfile extends React.Component {
                                         marginRight: 22,
                                         textAlign: 'right',
                                         color: '#392613',
-                                        marginTop: 20,fontFamily:'IRANSansMobile'
+                                        marginTop: 20, fontFamily: 'IRANSansMobile'
                                     }}>جوایز کسب شده</Text>
                                     <Image source={require('../../images/logos/cup.png')}
                                            style={{width: 35, height: 35, marginRight: 8}}/>
@@ -179,7 +183,7 @@ export default class UserProfile extends React.Component {
                                     marginRight: 23,
                                     textAlign: 'right',
                                     color: '#392613',
-                                    marginTop: 20,fontFamily:'IRANSansMobile'
+                                    marginTop: 20, fontFamily: 'IRANSansMobile'
                                 }}>کوین</Text>
                                 <Image source={require('../../images/scoin.png')}
                                        style={{width: 35, height: 35, marginRight: 7}}/>
@@ -196,7 +200,12 @@ export default class UserProfile extends React.Component {
                                 }}>
                                     <Image source={require('../../images/logos/support.png')}
                                            style={{height: 50, width: 50, marginTop: 10}}/>
-                                    <Text style={{fontSize: 20, color: '#85adad', textAlign: 'center',fontFamily:'IRANSansMobile'}}>پشتیبانی</Text>
+                                    <Text style={{
+                                        fontSize: 20,
+                                        color: '#85adad',
+                                        textAlign: 'center',
+                                        fontFamily: 'IRANSansMobile'
+                                    }}>پشتیبانی</Text>
                                 </View>
                                 <View style={{
                                     alignItems: 'center',
@@ -207,7 +216,13 @@ export default class UserProfile extends React.Component {
                                 }}>
                                     <Image source={require('../../images/logos/faq.png')}
                                            style={{height: 50, width: 50, opacity: 0.3, marginTop: 10}}/>
-                                    <Text style={{fontSize: 15, color: '#85adad', textAlign: 'center', marginTop: 3,fontFamily:'IRANSansMobile'}}>سوالات
+                                    <Text style={{
+                                        fontSize: 15,
+                                        color: '#85adad',
+                                        textAlign: 'center',
+                                        marginTop: 3,
+                                        fontFamily: 'IRANSansMobile'
+                                    }}>سوالات
                                         متداول</Text>
                                 </View>
                                 <View style={{
@@ -218,10 +233,15 @@ export default class UserProfile extends React.Component {
                                     borderColor: '#e0ebeb'
                                 }}>
                                     <TouchableOpacity onPress={() => this.removeusername()}>
-                                    <Image source={require('../../images/logos/logout.png')}
-                                           style={{height: 50, width: 50, opacity: 0.2, marginTop: 10}}/>
-                                    <Text style={{fontSize: 20, color: '#85adad', textAlign: 'center',fontFamily:'IRANSansMobile'}}
-                                    >خروج</Text>
+                                        <Image source={require('../../images/logos/logout.png')}
+                                               style={{height: 50, width: 50, opacity: 0.2, marginTop: 10}}/>
+                                        <Text style={{
+                                            fontSize: 20,
+                                            color: '#85adad',
+                                            textAlign: 'center',
+                                            fontFamily: 'IRANSansMobile'
+                                        }}
+                                        >خروج</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -229,29 +249,40 @@ export default class UserProfile extends React.Component {
                     </ImageBackground>
                 </ScrollView>
                 {/* footer */}
-                <View style={{flexDirection:'row',height:50,backgroundColor:'#f8f8f8',borderWidth:0.5,borderColor:"#707070"}}>
-                    <View style={{flexDirection:'row',height:50,backgroundColor:'#f8f8f8',width:'100%'}}>
-                        <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('Firstpage')}>
+                <View style={{
+                    flexDirection: 'row',
+                    height: 50,
+                    backgroundColor: '#f8f8f8',
+                    borderWidth: 0.5,
+                    borderColor: "#707070"
+                }}>
+                    <View style={{flexDirection: 'row', height: 50, backgroundColor: '#f8f8f8', width: '100%'}}>
+                        <TouchableOpacity style={{flex: 1}} onPress={() => this.props.navigation.navigate('Firstpage')}>
                             <View style={styles.footerViews}>
-                                <Image source={require('../../images/Footer/home.png')} style={{height:24,width:24,marginTop:7}} />
+                                <Image source={require('../../images/Footer/home.png')}
+                                       style={{height: 24, width: 24, marginTop: 7}}/>
                                 <Text style={{fontSize: 10}}>خانه</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('category')}>
+                        <TouchableOpacity style={{flex: 1}} onPress={() => this.props.navigation.navigate('category')}>
                             <View style={styles.footerViews}>
-                                <Image source={require('../../images/Footer/category.png')} style={{height:24,width:24,marginTop:7}} />
+                                <Image source={require('../../images/Footer/category.png')}
+                                       style={{height: 24, width: 24, marginTop: 7}}/>
                                 <Text style={{fontSize: 10}}>دسته بندی</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('miningpage')}>
+                        <TouchableOpacity style={{flex: 1}}
+                                          onPress={() => this.props.navigation.navigate('miningpage')}>
                             <View style={styles.footerViews}>
-                                <Image source={require('../../images/Footer/mining.png')} style={{height:24,width:24,marginTop:7}} />
+                                <Image source={require('../../images/Footer/mining.png')}
+                                       style={{height: 24, width: 24, marginTop: 7}}/>
                                 <Text style={{fontSize: 10}}>حفاری</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{flex:1}} onPress={() => this.props.navigation.navigate('profile')}>
+                        <TouchableOpacity style={{flex: 1}} onPress={() => this.props.navigation.navigate('profile')}>
                             <View style={styles.footerViews}>
-                                <Image source={require('../../images/Footer/profile_active.png')} style={{height:24,width:24,marginTop:7}} />
+                                <Image source={require('../../images/Footer/profile_active.png')}
+                                       style={{height: 24, width: 24, marginTop: 7}}/>
                                 <Text style={{fontSize: 10}}>پروفایل</Text>
                             </View>
                         </TouchableOpacity>
@@ -263,8 +294,8 @@ export default class UserProfile extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    footerViews:{
-        alignItems:'center',
+    footerViews: {
+        alignItems: 'center',
         justifyContent: 'center'
     },
     container: {

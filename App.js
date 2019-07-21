@@ -44,6 +44,7 @@ import Search from './libraries/Search'
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import Invitation from './libraries/Invitation/Invitation';
 import GameCenterView from './libraries/GameCenter/GameCenterView';
+import EventsStatus from './libraries/EventsStatus/EventsStatus'
 
 //var PushNotification = require('react-native-push-notification');
 type Props = {};
@@ -380,6 +381,7 @@ const AppNavigator = createStackNavigator({
         webview : WebViewPage,
         searchdata : SearchData,
         Invitation : Invitation,
+        EventsStatus : EventsStatus
     }, {
         initialRouteName: 'startsignup',
         defaultNavigationOptions: {
