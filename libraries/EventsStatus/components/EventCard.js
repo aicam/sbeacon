@@ -20,10 +20,10 @@ export default class EventCard extends React.Component {
         // console.log(temp4.toString());
         let dateS = new Date(temp2);
         let dateE = new Date(temp4);
-        let date = Date();
-        // console.log(date.toString());
-        // console.log(dateS.toString());
-        // console.log(dateE.toString());
+        let date = new Date(Date());
+        console.log(date.toString());
+        console.log(dateS.toString());
+        console.log(dateE.toString());
         if (date > dateE) {
             this.setState({txt: "به پایان رسیده است"});
         } else if (date < dateS) {
@@ -41,14 +41,14 @@ export default class EventCard extends React.Component {
         return (
             <ImageBackground source={require('../../../images/card-background.jpg')}
                              style={[{width: '100%'}, styles.container]}>
-                <Text style={styles.paragraph}>
+                <Text style={[styles.paragraph, {fontSize: 30, margin: 15}]}>
                     {this.props.title}
                 </Text>
                 <Text style={styles.paragraph}>
-                    امتیاز {this.props.score}
+                    امتیاز   {this.props.score}
                 </Text>
                 <Text style={styles.paragraph}>
-                    رتبه {this.props.player_rank}
+                    رتبه    {this.props.player_rank}
                 </Text>
                 <Text style={styles.paragraph}>
                     {this.state.txt}
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     },
     paragraph: {
         color: '#FFFFFF',
-        margin: 12,
+        margin: 8,
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
