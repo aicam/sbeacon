@@ -105,7 +105,7 @@ export default class MiningPage extends React.Component {
                             </View>
                             <View style={{flexDirection:'row',justifyContent:'space-between',paddingBottom:100}}>
                                 <TouchableOpacity style={{marginTop:20}}
-                                                  onPress={() => this.props.navigation.navigate('webview',{url : 'http://parsbeacon.ir/requests/my_quiz?username=' + this.state.username})}>
+                                                  onPress={() => this.props.navigation.navigate('webview',{url : 'http://parsbeacon.ir/requests/quiz?username=' + this.state.username})}>
                                     <ImageBackground source={require('../../images/my_quiz.png')} style={{height:120,width:120,marginLeft:10}} >
                                     </ImageBackground>
                                 </TouchableOpacity>
