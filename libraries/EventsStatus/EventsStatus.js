@@ -55,7 +55,8 @@ export default class EventsStatus extends React.Component {
             })
             .catch((error) => {
                 alert.error(error.toString());
-            });
+            })
+            .catch(error => console.log(error.toString()));
     }
 
 

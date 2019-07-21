@@ -1,26 +1,40 @@
 import * as React from 'react';
-import {Text, StyleSheet, ImageBackground} from 'react-native';
+import {ImageBackground, StyleSheet, Text} from 'react-native';
 
 export default class EventCard extends React.Component {
 
-    static setStatus(s, e) {
+    constructor() {
+        super();
+        this.state = {
+            txt: ''
+        }
+
+    }
+
+    setStatus(s, e) {
         let temp = s.split(" ");
         let temp2 = temp[0] + "T" + temp[1];
         let temp3 = e.split(" ");
         let temp4 = temp3[0] + "T" + temp3[1];
-        console.log(temp2.toString());
-        console.log(temp4.toString());
+        // console.log(temp2.toString());
+        // console.log(temp4.toString());
         let dateS = new Date(temp2);
         let dateE = new Date(temp4);
-        let date = new Date().getDate();
-        console.log(date.toString());
-        console.log(dateS.toString());
-        console.log(dateE.toString())
+        let date = Date();
+        // console.log(date.toString());
+        // console.log(dateS.toString());
+        // console.log(dateE.toString());
+        if (date > dateE) {
+            this.setState({txt: "به پایان رسیده است"});
+        } else if (date < dateS) {
+            this.setState({txt: "شروع نشده است"});
+        } else {
+            this.setState({txt: "در حال برگزاری می باشد"});
+        }
     }
 
     componentDidMount() {
-        EventCard.setStatus(this.props.start_time, this.props.end_time)
-
+        this.setStatus(this.props.start_time, this.props.end_time)
     }
 
     render() {
@@ -28,16 +42,16 @@ export default class EventCard extends React.Component {
             <ImageBackground source={require('../../../images/card-background.jpg')}
                              style={[{width: '100%'}, styles.container]}>
                 <Text style={styles.paragraph}>
-                    title {this.props.title}
+                    {this.props.title}
                 </Text>
                 <Text style={styles.paragraph}>
-                    rate {this.props.score}
+                    امتیاز {this.props.score}
                 </Text>
                 <Text style={styles.paragraph}>
-                    rank {this.props.player_rank}
+                    رتبه {this.props.player_rank}
                 </Text>
                 <Text style={styles.paragraph}>
-                    status
+                    {this.state.txt}
                 </Text>
             </ImageBackground>
         );
@@ -51,7 +65,7 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderRadius: 3,
         borderColor: '#000',
-        marginBottom:10
+        marginBottom: 10
     },
     paragraph: {
         color: '#FFFFFF',
