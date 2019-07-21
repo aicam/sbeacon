@@ -37,7 +37,7 @@ export default class GameCenterView extends React.Component {
     constructor() {
         super();
         this.state = {
-            ranking_title: ['1 month', '1 week'], timer: 1, modalVisible: false,
+            ranking_title: ['برترین های ماه', 'برترین های هفته'], timer: 1, modalVisible: false,
             medals: '',
             loaded: false,
             username: '',
@@ -86,7 +86,9 @@ export default class GameCenterView extends React.Component {
                 });
                 this.setState({loaded: true});
             });
-        }).catch(e => {alert(e.toString())});
+        }).catch(e => {
+            alert(e.toString())
+        });
     }
 
     attend() {
@@ -99,7 +101,9 @@ export default class GameCenterView extends React.Component {
                     alert("شما قبلا در این مسابقه ثبت نام کردید");
                 }
             })
-        ).catch(e => {alert(e.toString())});
+        ).catch(e => {
+            alert(e.toString())
+        });
     }
 
     render() {
@@ -131,24 +135,24 @@ export default class GameCenterView extends React.Component {
                         </View>
                     </Modal>
 
-                    <Card style={[styles.cardStyles,{marginBottom:35}]}>
+                    <Card style={[styles.cardStyles, {marginBottom: 35}]}>
                         <LinearGradient colors={['#fc00ff', '#00dbde']} start={{x: 1, y: 0}} end={{x: 0, y: 1}}>
-                        <PageTtile/>
+                            <PageTtile/>
                         </LinearGradient>
                     </Card>
                     <Card style={[styles.cardStyles]}>
                         <LinearGradient colors={['#fc4a1a', '#f7b733']} start={{x: 0, y: 0}} end={{x: 0, y: 1}}>
-                        <Text style={styles.header}>Medals</Text>
+                            <Text style={styles.header}>مدال ها</Text>
                         </LinearGradient>
                     </Card>
-                    <Card style={[styles.cardStyles,{marginTop:8}]}>
+                    <Card style={[styles.cardStyles, {marginTop: 8}]}>
                         <View
                             style={{flexDirection: 'row', marginTop: 10, justifyContent: 'center', paddingBottom: 15}}>
                             {this.state.medals.map(item => <Image style={{width: 35, height: 35}}
                                                                   source={{uri: item.toString()}}/>)}
                         </View>
                     </Card>
-                    <Card style={[styles.splitUp,styles.cardStyles]}>
+                    <Card style={[styles.splitUp, styles.cardStyles]}>
                         <FadeInView>
                             <LinearGradient
                                 colors={[this.state.timer % 2 === 0 ? '#52c234' : '#1CB5E0', this.state.timer % 2 === 0 ? '#061700' : '#000046']}
@@ -156,30 +160,30 @@ export default class GameCenterView extends React.Component {
                                 <Text style={styles.header}>{this.state.ranking_title[this.state.timer % 2]}</Text>
                             </LinearGradient>
                         </FadeInView>
-                        </Card>
-                    <Card style={[styles.cardStyles,{marginTop:8}]} >
-                            {this.state.timer % 2 === 0 && this.state.weekly_rank.map((item, index) =>
-                                <Ranking username={item.username.toString()}
-                                         rate={item.rate.toString()}
-                                         rank={item.counter.toString()}
-                                         mode={0}
-                                         in={index}/>
-                            )}
-                            {this.state.timer % 2 === 1 && this.state.monthly_rank.map((item, index) =>
-                                <Ranking username={item.username.toString()}
-                                         rate={item.rate.toString()}
-                                         rank={item.counter.toString()}
-                                         mode={1}
-                                         in={index}
-                                key={index}/>
-                            )}
                     </Card>
-                    <Card style={[styles.splitUp,styles.cardStyles]}>
+                    <Card style={[styles.cardStyles, {marginTop: 8}]}>
+                        {this.state.timer % 2 === 1 && this.state.weekly_rank.map((item, index) =>
+                            <Ranking username={item.username.toString()}
+                                     rate={item.rate.toString()}
+                                     rank={item.counter.toString()}
+                                     mode={0}
+                                     in={index}/>
+                        )}
+                        {this.state.timer % 2 === 0 && this.state.monthly_rank.map((item, index) =>
+                            <Ranking username={item.username.toString()}
+                                     rate={item.rate.toString()}
+                                     rank={item.counter.toString()}
+                                     mode={1}
+                                     in={index}
+                                     key={index}/>
+                        )}
+                    </Card>
+                    <Card style={[styles.splitUp, styles.cardStyles]}>
                         <LinearGradient colors={['#C04848', '#480048']} start={{x: 0, y: 0}} end={{x: 0, y: 1}}>
-                            <Text style={styles.header}>Events</Text>
+                            <Text style={styles.header}>مسابقات</Text>
                         </LinearGradient>
                     </Card>
-                    <Card style={[styles.cardStyles,{marginTop:8}]} >
+                    <Card style={[styles.cardStyles, {marginTop: 8}]}>
                         <FadeInView>
                             <ScrollView horizontal={true}>
                                 {this.state.events.map((item, index) =>
@@ -195,6 +199,15 @@ export default class GameCenterView extends React.Component {
                             </ScrollView>
                         </FadeInView>
                     </Card>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('webview', {url: 'http://beacongameserver.ir/index.html?username=' + this.state.username})}>
+                        <Card style={[styles.cardStyles,{marginTop: 15}]}>
+                            <LinearGradient colors={['#833ab4', '#fd1d1d', '#fcb045']} start={{x: 0, y: 0}}
+                                            end={{x: 0, y: 1}} >
+                                <Text style={styles.header}>شروع بازی</Text>
+                            </LinearGradient>
+                        </Card>
+                    </TouchableOpacity>
                 </ScrollView>
                 }
             </ImageBackground>
@@ -213,6 +226,7 @@ const styles = StyleSheet.create({
         marginTop: 40
     },
     header: {
+        fontFamily: 'IRANSansMobile',
         textAlign: 'center',
         fontSize: 23,
         color: 'white',
@@ -220,7 +234,7 @@ const styles = StyleSheet.create({
         margin: 10
     },
     cardStyles: {
-        borderRadius:20,
+        borderRadius: 20,
         overflow: 'hidden'
     },
     modalbutton: {
