@@ -26,7 +26,7 @@ export default class EventCard extends React.Component {
     render() {
         return (
             <ImageBackground source={require('../../../images/card-background.jpg')}
-                             style={[{width: '100%', height: '100%'}, styles.container]}>
+                             style={[{width: '100%'}, styles.container]}>
                 <Text style={styles.paragraph}>
                     title {this.props.title}
                 </Text>
@@ -48,6 +48,10 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'center',
+        borderWidth: 3,
+        borderRadius: 3,
+        borderColor: '#000',
+        marginBottom:10
     },
     paragraph: {
         color: '#FFFFFF',

@@ -12,8 +12,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "cancelable-fetch": "^1.0.0",
     "react": "16.6.3",
-    "react-native": "^0.58.5",
+    "react-native": "^0.58.6",
     "react-native-background-timer": "^2.1.1",
     "react-native-cancelable-fetch": "^0.1.1",
     "react-native-countdown-component": "^2.2.0",

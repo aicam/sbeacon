@@ -63,7 +63,7 @@ export default class EventsStatus extends React.Component {
         return (
             <View style={styles.container}>
                 <ScrollView>
-                    <Card style={styles.card}>
+                    <Card>
                         {this.state.events.map((item, index) => <EventCard
                             title={item.title.toString()}
                             key={index}
@@ -84,8 +84,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         paddingTop: 10,
-        backgroundColor: '#ecf0f1',
-        padding: 8,
+        padding: 8
     },
     card: {
         borderWidth: 3,
