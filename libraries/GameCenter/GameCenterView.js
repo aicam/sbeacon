@@ -176,7 +176,8 @@ export default class GameCenterView extends React.Component {
                                      rate={item.rate.toString()}
                                      rank={item.counter.toString()}
                                      mode={0}
-                                     in={index}/>
+                                     in={index}
+                                     key={index}/>
                         )}
                         {this.state.timer % 2 === 0 && this.state.monthly_rank.map((item, index) =>
                             <Ranking username={item.username.toString()}

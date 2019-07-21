@@ -24,7 +24,6 @@ import {
     AppState, TextInput,
     TouchableOpacity
 } from 'react-native';
-import { Header } from "react-native-elements"
 import HeaderView from "./libraries/HeaderView";
 import Listinview from "./libraries/Listinview";
 import StartPage from "./libraries/StartPage"
@@ -143,7 +142,6 @@ class AdvertisementData extends React.Component{
     render(){
         const { navigation } = this.props;
         const itemId = navigation.getParam('ad_id', '1');
-        console.log(itemId + " adver");
         return (
             <ADinfo ad_id = {itemId} navigation={this.props.navigation}/>
         );
@@ -216,7 +214,6 @@ class CategoryAD extends React.Component{
     render()  {
         const { navigation } = this.props;
         const itemId = navigation.getParam('category_ID', '5');
-        console.log(itemId + "cid");
         return (
             <CategoryADs cid2 = {itemId} navigation={this.props.navigation} />
         );
@@ -416,9 +413,7 @@ export default class App extends React.Component<Props> {
 
         };
     }
-    async componentWillMount(){
-        console.log(level)
-    }
+
 
     componentDidMount() {
         this.setState({isPageOnLoading : false});

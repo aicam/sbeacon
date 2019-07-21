@@ -4,12 +4,8 @@ import {
     Image, FlatList, ActivityIndicator, ScrollView,
     ImageBackground, TouchableOpacity, Alert, AsyncStorage
 } from 'react-native'
-import TimerCountdown from "react-native-timer-countdown";
-import CountDown from 'react-native-countdown-component';
-import {withNavigation} from 'react-navigation';
-import NearestScoinText from '../../libraries/Texts/NearestScoinText'
+const fetch = require('react-native-cancelable-fetch');
 import MostPopularItems from '../../libraries/Texts/MostPopularItems'
-import ConnectedSbeaconText from '../../libraries/Texts/ConnectedSbeaconText'
 import OnlyScoinText from '../../libraries/Texts/OnlyScoinText'
 import BombsText from '../../libraries/Texts/BombsText'
 import FreeForYouText from '../../libraries/Texts/FreeForYouText'
@@ -70,7 +66,7 @@ export default class CompleteHomePage extends Component {
     async componentDidMount() {
         const username = await this.getUsername();
         const page_url = "http://parsbeacon.ir/requests/userData?username=" + username;
-        fetch(page_url)
+        fetch(page_url,null,this)
             .then((response) => response.json()
             .then((responseJson) => {
                 this.setState({
@@ -83,7 +79,7 @@ export default class CompleteHomePage extends Component {
         });
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                fetch('http://parsbeacon.ir/requests/location?long=' + position.longitude + '&lat=' + position.latitude)
+                fetch('http://parsbeacon.ir/requests/location?long=' + position.longitude + '&lat=' + position.latitude,null,this)
                     .then((response) =>
                         response.json().then((datas) => {
                                 this.setState({
@@ -100,7 +96,7 @@ export default class CompleteHomePage extends Component {
             (err) => Alert.alert(err),
             {enableHighAccuracy: false, timeout: 8000, maximumAge: 10000}
         );
-        fetch('http://parsbeacon.ir/requests/homepage?userID').then((response) => {
+        fetch('http://parsbeacon.ir/requests/homepage?userID',null,this).then((response) => {
             response.json().then((jsondata) => {
                 this.setState({
                     daily_suggestion_data: jsondata.dailysuggestions,
@@ -296,5 +292,8 @@ export default class CompleteHomePage extends Component {
 
             </View>
         );
+    }
+    componentWillUnmount(): void {
+        fetch.abort(this)
     }
 }

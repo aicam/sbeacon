@@ -106,6 +106,8 @@ export default class Invitation extends Component {
                 if (!message.IsSuccessful) {
                     Alert.alert("مشکلی در ارسال پیامک پیش آمده، لطفا دوباره تلاش کنید.")
                 }
+                Alert.alert('دعوت شما با موفقیت به دست دوستتان رسید ;)');
+                this.props.navigation.navigate('profile')
             })
         });
     }
