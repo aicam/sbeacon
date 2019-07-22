@@ -49,7 +49,7 @@ export default class ADinfo extends Component {
             let token = await AsyncStorage.getItem('username');
             return token;
         } catch (error) {
-            Alert.alert(error);
+            Alert.alert(error.toString());
         }
     }
 
@@ -61,7 +61,6 @@ export default class ADinfo extends Component {
         this.setState({loaded: false});
         fetch('http://parsbeacon.ir/requests/receive_comments?ad_id=' + this.state.ad_id + '&offset=' + this.state.offset).then((response) => {
             response.json().then((json_data) => {
-                console.log(this.state.comments);
                 this.setState({
                     comments: json_data.comments,
                     comments_loaded: true
@@ -70,7 +69,6 @@ export default class ADinfo extends Component {
         });
         fetch('http://parsbeacon.ir/requests/ADinfo?ad_id=' + this.state.ad_id).then((response) => {
             response.json().then((jsondata) => {
-                    console.log(jsondata);
                     this.setState({
                         data: jsondata,
                         loaded: true
@@ -96,10 +94,10 @@ export default class ADinfo extends Component {
                     })
                 }, function () {
                 }).catch((error) => {
-                    Alert.alert(error)
+                    Alert.alert(error.toString())
                 })
             ).catch((error) => {
-            Alert.alert(error)
+            Alert.alert(error.toString())
         });
     }
 
@@ -123,7 +121,6 @@ export default class ADinfo extends Component {
 
     async submit_comment(comment) {
         let username = await this.getUsername();
-        console.log(username + " uss");
         fetch('http://parsbeacon.ir/requests/comment?cm=' + comment + '&ad_id=' + this.state.ad_id + '&username=' + username).then((response) => {
             Alert.alert('نظر شما با موفقیت ثبت شد');
             return;
@@ -135,7 +132,6 @@ export default class ADinfo extends Component {
         this.setState({offset: newoffset});
         fetch('http://parsbeacon.ir/requests/receive_comments?ad_id=' + this.state.ad_id + '&offset=' + newoffset).then((response) => {
             response.json().then((json_data) => {
-                console.log(json_data.comments);
                 let newcomments = this.state.comments.concat(json_data.comments);
                 this.setState({
                     comments: newcomments,
@@ -146,14 +142,14 @@ export default class ADinfo extends Component {
 
     update_star(rate) {
         fetch('http://parsbeacon.ir/requests/set_rate?ad_id=' + this.state.ad_id + '&rate=' + rate).then((response) => {
-            response.json().then((json_data) => {
+            JSON.stringify(response).json().then((json_data) => {
                 if (json_data.success) {
                     Alert.alert('رای شما با موفقیت ثبت شد')
                 } else {
                     Alert.alert('مشکلی در ثبت رای پیش آمده')
                 }
-            }).catch((err) => Alert.alert(err))
-        }).catch((err) => Alert.alert(err))
+            }).catch((err) => Alert.alert(err.toString()))
+        }).catch((err) => Alert.alert(err.toString()))
     }
 
     render() {
@@ -215,12 +211,17 @@ export default class ADinfo extends Component {
                                         fontSize: 15,
                                         fontFamily: 'IRANSansMobile'
                                     }}> هزارتومان </Text>}
+                                    {this.state.data.Scoin_available && <Text style={{
+                                        color: 'black',
+                                        fontSize: 15,
+                                        fontFamily: 'IRANSansMobile'
+                                    }}> <Image source={require("../images/scoin.png")} style={{width:30,height:30}} /> </Text>}
                                     <Text style={{color: 'black', fontSize: 15}}>{this.state.data.cost}</Text>
                                     <Text style={{
                                         color: '#707070',
                                         fontStyle: 'italic',
                                         textDecorationLine: 'line-through'
-                                    }}> {this.state.data.old_cost} </Text>
+                                    }}> {this.state.data.old_cost.toString()} </Text>
                                 </View>
                             </View>
                             <TouchableOpacity onPress={() => {
@@ -228,7 +229,7 @@ export default class ADinfo extends Component {
                                     this.props.navigation.navigate('webview', {url: 'http://parsbeacon.ir/requests/Buy?ad_id=' + this.state.data.id + '&userID=' + this.state.username})
                                 } else {
                                     if (this.state.data.min_level < this.state.level)
-                                        this.props.navigation.navigate('webview', {url: 'http://parsbeacon.ir/requests/foreign_ad?ad_id=' + this.state.data.id})
+                                        this.props.navigation.navigate('webview', {url: 'http://parsbeacon.ir/requests/foreign_ad?ad_id=' + this.state.data.id});
                                     else
                                         Alert.alert(" شما هنوز به سطح " + this.state.data.min_level + " نرسیده اید.")
                                 }
@@ -265,7 +266,7 @@ export default class ADinfo extends Component {
                         />
                     </View>
                     <View style={{flexDirection: 'row', marginTop: 5, justifyContent: 'space-between'}}>
-                        <Text style={{fontSize: 18, marginLeft: 10, marginTop: 5}}>+{this.state.data.bought} </Text>
+                        <Text style={{fontSize: 18, marginLeft: 10, marginTop: 5}}>+{this.state.data.bought.toString()} </Text>
                         <TouchableOpacity onPress={() => this.onShare()}>
                             <Image source={require('../images/logos/share.png')}
                                    style={{width: 35, height: 35, marginRight: 10}}/>
@@ -289,7 +290,7 @@ export default class ADinfo extends Component {
                             />}
                             {this.state.data.typeoftime == 1 &&
                             <Text style={{marginTop: 8, fontFamily: 'IRANSansMobile'}}> روز باقی
-                                مانده{this.state.data.timers}</Text>
+                                مانده{this.state.data.timers.toString()}</Text>
                             }
                             {this.state.data.typeoftime == 0 &&
                             <Text style={{marginTop: 8, fontFamily: 'IRANSansMobile'}}>به اتمام رسیده</Text>
@@ -355,9 +356,9 @@ export default class ADinfo extends Component {
                             textAlign: 'right',
                             marginRight: 20,
                             fontFamily: 'IRANSansMobile'
-                        }}>{this.state.text_state == 1 && this.state.data.description}
-                            {this.state.text_state == 2 && this.state.data.pay_way}
-                            {this.state.text_state == 3 && this.state.data.features}
+                        }}>{this.state.text_state == 1 && this.state.data.description.toString()}
+                            {this.state.text_state == 2 && this.state.data.pay_way.toString()}
+                            {this.state.text_state == 3 && this.state.data.features.toString()}
                         </Text>
                     </View>
 
@@ -384,7 +385,7 @@ export default class ADinfo extends Component {
                                         <View style={{flexDirection: 'row'}}>
                                             <Image style={{height: 15, width: 15, marginRight: 5, marginTop: 5}}
                                                    source={require('../images/logos/level.png')}/>
-                                            <Text style={{textAlign: 'left', fontSize: 15}}>سطح{item.min_level}</Text>
+                                            <Text style={{textAlign: 'left', fontSize: 15}}>سطح{item.min_level.toString()}</Text>
                                         </View>
                                         <View>
                                             <Text style={{
@@ -393,7 +394,7 @@ export default class ADinfo extends Component {
                                                 textAlign: 'left',
                                                 marginLeft: '5%',
                                                 marginTop: 5
-                                            }}>{item.title}</Text>
+                                            }}>{item.title.toString()}</Text>
                                         </View>
                                     </View>
                                     <TouchableOpacity
@@ -414,7 +415,7 @@ export default class ADinfo extends Component {
                                                              height: 201
                                                          }}>
                                             <View style={{marginLeft: 10, height: 25, backgroundColor: 'black'}}>
-                                                <Text style={{color: 'white', fontSize: 20}}>{item.off}%</Text>
+                                                <Text style={{color: 'white', fontSize: 20}}>{item.off.toString()}%</Text>
                                             </View>
                                         </ImageBackground>
                                     </TouchableOpacity>
@@ -439,7 +440,7 @@ export default class ADinfo extends Component {
                                             showSeparator
                                         />}
                                         {item.typeoftime == 1 &&
-                                        <Text style={{marginTop: 8}}> {item.timers}روز باقی مانده</Text>
+                                        <Text style={{marginTop: 8}}> {item.timers.toString()}روز باقی مانده</Text>
                                         }
                                         {item.typeoftime == 0 &&
                                         <Text style={{marginTop: 8}}>به اتمام رسیده</Text>
@@ -472,18 +473,18 @@ export default class ADinfo extends Component {
                                                     textAlign: 'left',
                                                     fontSize: 22,
                                                     fontFamily: 'traffic'
-                                                }}>{item.Scoin_cost}</Text>
+                                                }}>{item.Scoin_cost.toString()}</Text>
                                                 <Text style={{
                                                     color: '#707070',
                                                     fontStyle: 'italic',
                                                     textDecorationLine: 'line-through'
-                                                }}> {item.old_cost} </Text>
+                                                }}> {item.old_cost.toString()} </Text>
                                             </View>
                                             }
                                             {item.Scoin_available == 0 &&
                                             <View style={{flexDirection: 'row'}}>
                                                 <Text style={{color: 'black', fontSize: 15}}> هزارتومان </Text>
-                                                <Text style={{color: 'black', fontSize: 15}}> {item.cost} </Text>
+                                                <Text style={{color: 'black', fontSize: 15}}> {item.cost.toString()} </Text>
                                                 <Text style={{
                                                     color: '#707070',
                                                     fontStyle: 'italic',
@@ -513,8 +514,8 @@ export default class ADinfo extends Component {
                                     marginLeft: 10,
                                     textAlign: 'right',
                                     marginTop: 3
-                                }}>:کاربر {item.username}</Text>
-                                <Text style={{marginLeft: 20, fontSize: 20}}>{item.comment}</Text>
+                                }}>:کاربر {item.username.toString()}</Text>
+                                <Text style={{marginLeft: 20, fontSize: 20}}>{item.comment.toString()}</Text>
                             </View>)}
                         <View style={{flexDirection: 'row', justifyContent: 'flex-end', borderEndWidth: 2}}>
                             <TextInput style={{fontSize: 20, flex: 8, marginRight: 5, }} placeholder="نظر خود را بنویسید"

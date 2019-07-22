@@ -27,7 +27,7 @@ export default class UserProfile extends React.Component {
         try {
             await AsyncStorage.removeItem('username')
         } catch (e) {
-            Alert.alert(e);
+            Alert.alert(e.toString());
         }
         Alert.alert("لطفا برنامه را یک بار بسته و دوباره باز کنید")
         this.props.navigation.navigate('startsignup')
@@ -38,7 +38,7 @@ export default class UserProfile extends React.Component {
             let token = await AsyncStorage.getItem('username');
             return token;
         } catch (error) {
-            Alert.alert(error);
+            Alert.alert(error.toString());
         }
     }
 
@@ -53,7 +53,7 @@ export default class UserProfile extends React.Component {
                     scoin: responsejson.scoin
                 })
             })
-        }).catch((err) => Alert.alert(err))
+        }).catch((err) => Alert.alert(err.toString()))
     }
 
     render() {

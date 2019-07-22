@@ -19,7 +19,7 @@ export default class Invitation extends Component {
             let token = await AsyncStorage.getItem('username');
             return token;
         } catch (error) {
-            Alert.alert(error);
+            Alert.alert(error.toString());
         }
     }
 

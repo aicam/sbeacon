@@ -54,7 +54,7 @@ export default class CompleteHomePage extends Component {
             let token = await AsyncStorage.getItem('username');
             return token;
         } catch (error) {
-            Alert.alert(error);
+            Alert.alert(error.toString());
         }
     }
 
@@ -73,9 +73,9 @@ export default class CompleteHomePage extends Component {
                     level: responseJson.level
                 })
             }, function () {
-            }).catch((error) => {Alert.alert(error)})
+            }).catch((error) => {Alert.alert(error.toString())})
             ).catch((error) => {
-            Alert.alert(error)
+            Alert.alert(error.toString())
         });
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -88,12 +88,12 @@ export default class CompleteHomePage extends Component {
                                 })
                             },function () {
                         }).catch((error) => {
-                            Alert.alert(error)
+                            Alert.alert(error.toString())
                         }
                         )
-                    ).catch((error) => {Alert.alert(error)})
+                    ).catch((error) => {Alert.alert(error.toString())})
             },
-            (err) => Alert.alert(err),
+            (err) => Alert.alert(err.toString()),
             {enableHighAccuracy: false, timeout: 8000, maximumAge: 10000}
         );
         fetch('http://parsbeacon.ir/requests/homepage?userID',null,this).then((response) => {
@@ -123,9 +123,9 @@ export default class CompleteHomePage extends Component {
                 });
             },function () {
             }).catch((error) => {
-                Alert.alert(error)
+                Alert.alert(error.toString())
             });
-        }).catch((error) => {Alert.alert(error)})
+        }).catch((error) => {Alert.alert(error.toString())})
     }
 
     render() {

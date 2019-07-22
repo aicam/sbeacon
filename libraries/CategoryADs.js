@@ -36,9 +36,9 @@ export default class CategoryADs extends React.Component {
                         })
                     }
                     }
-                ).catch((err) => {Alert.alert(err)})
+                ).catch((err) => {Alert.alert(err.toString())})
             }
-        ).catch((err) => {Alert.alert(err)})
+        ).catch((err) => {Alert.alert(err.toString())})
     }
 
     change_category(cid) {
@@ -54,9 +54,9 @@ export default class CategoryADs extends React.Component {
                             data: jsondata.items
                         })
                     }
-                ).catch((err) => Alert.alert(err))
+                ).catch((err) => Alert.alert(err.toString()))
             }
-        ).catch((err) => Alert.alert(err))
+        ).catch((err) => Alert.alert(err.toString()))
     }
 
     constructor() {

@@ -56,7 +56,7 @@ export default class Confirm_User extends Component {
 
             }, function () {
             }).catch((error) => {
-            Alert.alert(error)
+            Alert.alert(error.toString())
         });
         this.props.navigation.navigate('Firstpage');
     }
@@ -72,7 +72,7 @@ export default class Confirm_User extends Component {
                 }
             }, function () {
             }).catch((error) => {
-            Alert.alert(error)
+            Alert.alert(error.toString())
         });
     }
 

@@ -23,7 +23,7 @@ export default class HeaderView extends Component {
     async componentDidMount() {
         const user = await this.getUsername();
         fetch('http://parsbeacon.ir/requests/userData?userID=' + user).then((response) => {
-            response.json().then((jsondata) => {
+            JSON.stringify(response).json().then((jsondata) => {
                 this.setState({
                     notifs: jsondata.notification,
                     Scoin: jsondata.Bcoin,

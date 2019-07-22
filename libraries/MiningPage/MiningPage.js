@@ -56,7 +56,7 @@ export default class MiningPage extends React.Component {
             let token = await AsyncStorage.getItem('username');
             return token;
         } catch (error) {
-            Alert.alert(error);
+            Alert.alert(error.toString());
         }
     }
     _set_username(username){

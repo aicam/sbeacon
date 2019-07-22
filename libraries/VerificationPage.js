@@ -135,7 +135,7 @@ export default class VerificationPage extends Component {
 
             }, function () {
             }).catch((error) => {
-            Alert.alert(error)
+            Alert.alert(error.toString())
         });
     }
 

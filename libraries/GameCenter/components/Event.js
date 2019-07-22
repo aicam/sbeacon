@@ -8,7 +8,7 @@ export default class Event extends React.Component {
         return (
             <View style={styles.container}>
                 <LinearGradient colors={['#bdc3c7', '#2c3e50']} start={{x: 0, y: 0}} end={{x: 0, y: 1}} style={{borderRadius:15}}>
-                <View style={{borderWidth:0.5,padding:15,borderRadius:15}}>
+                <View style={{padding:15,borderRadius:15}}>
                     <Text style={styles.title}>{this.props.title}</Text>
                     <Text style={styles.award}>{this.props.award}</Text>
                     <CountDown

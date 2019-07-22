@@ -31,7 +31,7 @@ export default class StartPage extends Component {
         try {
             await AsyncStorage.removeItem('username')
         } catch (e) {
-            Alert.alert(e);
+            Alert.alert(e.toString());
         }
     }
 
@@ -40,7 +40,7 @@ export default class StartPage extends Component {
             let token = await AsyncStorage.getItem('username');
             return token;
         } catch (error) {
-            Alert.alert(error);
+            Alert.alert(error.toString());
         }
     }
 

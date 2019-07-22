@@ -55,7 +55,7 @@ export default class Search extends React.Component {
                             isLoaded: true
                         })
                     }
-                ).catch((err) => Alert.alert(err))
+                ).catch((err) => Alert.alert(err.toString()))
             }
         )
     }

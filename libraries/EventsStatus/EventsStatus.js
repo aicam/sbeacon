@@ -39,7 +39,7 @@ export default class EventsStatus extends React.Component {
         try {
             return await AsyncStorage.getItem('username');
         } catch (error) {
-            Alert.alert(error);
+            Alert.alert(error.toString());
         }
     }
 

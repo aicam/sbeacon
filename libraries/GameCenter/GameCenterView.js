@@ -64,7 +64,7 @@ export default class GameCenterView extends React.Component {
             let token = await AsyncStorage.getItem('username');
             return token;
         } catch (error) {
-            Alert.alert(error);
+            Alert.alert(error.toString());
         }
     }
 
@@ -212,7 +212,7 @@ export default class GameCenterView extends React.Component {
                     <TouchableOpacity
                         onPress={() => this.props.navigation.navigate('webview', {url: 'http://beacongameserver.ir/index.html?username=' + this.state.username})}>
                         <Card style={[styles.cardStyles, {marginTop: 15}]}>
-                            <LinearGradient colors={['#833ab4', '#fd1d1d', '#fcb045']} start={{x: 0, y: 0}}
+                            <LinearGradient colors={['#0f0c29', '#302b63', '#24243e']} start={{x: 0, y: 0}}
                                             end={{x: 0, y: 1}}>
                                 <Text style={styles.header}>شروع بازی</Text>
                             </LinearGradient>
@@ -245,7 +245,8 @@ const styles = StyleSheet.create({
     },
     cardStyles: {
         borderRadius: 20,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        backgroundColor: '#EEEEEE'
     },
     modalbutton: {
         borderWidth: 0.5,
