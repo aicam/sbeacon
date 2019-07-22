@@ -68,6 +68,7 @@ export default class UserProfile extends React.Component {
                         </ImageBackground>
 
                         <View style={{flex: 4}}>
+                            <TouchableOpacity onPress={() => {this.props.navigation.navigate('webview', {url: 'http://parsbeacon.ir/requests/notification?username=' + this.state.username})}}>
                             <View style={{
                                 flexDirection: 'row',
                                 justifyContent: 'flex-start',
@@ -86,6 +87,10 @@ export default class UserProfile extends React.Component {
                                 <Image source={require('../../images/logos/notifs.png')}
                                        style={{width: 40, height: 40}}/>
                             </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => {
+                                this.props.navigation.navigate('webview', {url: 'http://parsbeacon.ir/requests/Turnover?username=' + this.state.username})
+                            }}>
                             <View style={{
                                 flexDirection: 'row',
                                 justifyContent: 'flex-start',
@@ -104,6 +109,7 @@ export default class UserProfile extends React.Component {
                                 <Image source={require('../../images/logos/records.png')}
                                        style={{width: 40, height: 40}}/>
                             </View>
+                            </TouchableOpacity>
                             <View style={{
                                 flexDirection: 'row',
                                 justifyContent: 'space-between',
@@ -164,7 +170,7 @@ export default class UserProfile extends React.Component {
                                         textAlign: 'right',
                                         color: '#392613',
                                         marginTop: 20, fontFamily: 'IRANSansMobile'
-                                    }}>جوایز کسب شده</Text>
+                                    }}>وضعیت مسابقات</Text>
                                     <Image source={require('../../images/logos/cup.png')}
                                            style={{width: 35, height: 35, marginRight: 8}}/>
                                 </View>
