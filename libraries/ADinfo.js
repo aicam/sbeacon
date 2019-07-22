@@ -142,7 +142,7 @@ export default class ADinfo extends Component {
 
     update_star(rate) {
         fetch('http://parsbeacon.ir/requests/set_rate?ad_id=' + this.state.ad_id + '&rate=' + rate).then((response) => {
-            JSON.stringify(response).json().then((json_data) => {
+            response.json().then((json_data) => {
                 if (json_data.success) {
                     Alert.alert('رای شما با موفقیت ثبت شد')
                 } else {
@@ -215,7 +215,7 @@ export default class ADinfo extends Component {
                                         color: 'black',
                                         fontSize: 15,
                                         fontFamily: 'IRANSansMobile'
-                                    }}> <Image source={require("../images/scoin.png")} style={{width:30,height:30}} /> </Text>}
+                                    }}>کوین <Image source={require("../images/scoin.png")} style={{width:15,height:15}} /> </Text>}
                                     <Text style={{color: 'black', fontSize: 15}}>{this.state.data.cost}</Text>
                                     <Text style={{
                                         color: '#707070',
