@@ -401,9 +401,9 @@ class FirstPage extends React.Component {
                     {
                         (hideModal, overlayState) => (
                             <Fragment>
-                                <Text>{this.state.notificationTitle}</Text>
-                                <Text>{this.state.message}</Text>
-                                <Text onPress={hideModal}>Close</Text>
+                                <Text style={[styles.paragraph , {fontSize:30}]}>{this.state.notificationTitle}</Text>
+                                <Text style={styles.paragraph}>{this.state.message}</Text>
+                                <Text onPress={hideModal} style={[styles.paragraph , {color:"#4AAED1"}]}>بستن</Text>
                             </Fragment>
                         )
                     }
@@ -569,5 +569,13 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5,
+    },
+    paragraph: {
+        color: '#460000',
+        margin: 8,
+        fontSize: 20,
+        fontFamily:'IRANSansMobile',
+        fontWeight: 'bold',
+        textAlign: 'center',
     },
 });

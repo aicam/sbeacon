@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         margin: 8,
         fontSize: 20,
+        fontFamily:'IRANSansMobile',
         fontWeight: 'bold',
         textAlign: 'center',
     },
