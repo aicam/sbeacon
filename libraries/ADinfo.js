@@ -215,7 +215,7 @@ export default class ADinfo extends Component {
                                         color: 'black',
                                         fontSize: 15,
                                         fontFamily: 'IRANSansMobile'
-                                    }}>کوین <Image source={require("../images/scoin.png")} style={{width:15,height:15}} /> </Text>}
+                                    }}> <Image source={require("../images/scoin.png")} style={{width:15,height:15}} />  کوین</Text>}
                                     <Text style={{color: 'black', fontSize: 15}}>{this.state.data.cost}</Text>
                                     <Text style={{
                                         color: '#707070',
