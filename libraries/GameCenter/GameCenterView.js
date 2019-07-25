@@ -100,7 +100,7 @@ export default class GameCenterView extends React.Component {
             response => response.json().then(responseJson => {
                 this.setModalVisible(false);
                 if (responseJson.status) {
-                    alert("شما با موفقیت در مسابقه شرکت کردید.پس از اتمام مسابقه جایزه و اطلاعیه آن برای شما ارسال می گردد");
+                    alert("شما در مسابقه شرکت کردید.اطلاعات و نتیجه مسابقات را در قسمت پروفایل ، مسابقات دنبال کنید.");
                 } else {
                     alert("شما قبلا در این مسابقه ثبت نام کردید");
                 }

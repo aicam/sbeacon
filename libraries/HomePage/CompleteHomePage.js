@@ -131,19 +131,6 @@ export default class CompleteHomePage extends Component {
     render() {
         return (
             <View>
-                {this.state.notification_view == 1 &&
-                    <View style={{height:150,width:'100%',backgroundColor: '#ccccb3'}}>
-                    <View style={{alignItems:'flex-end'}}>
-                        <Text style={{fontSize: 15,marginTop:20,fontFamily:'IRANSansMobile',marginRight:10}}
-                              onPress={() => {this.setState({notification_view : 0})}}
-                        >بستن[X]</Text>
-                    </View>
-                    <View style={{width: '100%',alignItems:'center',justifyContent:'center',paddingBottom:15}}>
-                        <Text style={{fontSize: 22, marginTop: 10,color:'#476b6b',fontFamily:'IRANSansMobile'}}>{this.state.notification_title}</Text>
-                        <Text style={{fontSize: 18, marginTop: 30,fontFamily:'IRANSansMobile'}}>{this.state.notification_text}</Text>
-                    </View>
-                    </View>
-                }
                 <View style={{marginTop: 20, marginBottom: 30, borderColor: '#919191', borderBottomWidth: 4}}>
                     <ScrollView
                         horizontal={true}

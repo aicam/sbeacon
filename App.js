@@ -267,15 +267,15 @@ class Categories extends React.Component {
         return (
             <View style={{flex: 1}}>
                 <ScrollView>
-                    <View style={{height: 50, flexDirection: 'row', marginTop: 20, justifyContent: 'flex-end'}}>
-                        <TextInput style={{fontSize: 25, textAlign: 'center', marginRight: 20}} placeholder="جستوجو..."
+                    <View style={{height: 50, flexDirection: 'row', marginTop: 20, justifyContent: 'flex-end',marginRight:5}}>
+                        <TextInput style={{fontSize: 25, textAlign: 'center', marginRight: 20}} placeholder="جست و جو ..."
                                    onChangeText={(text) => {
                                        this.setState({search_text: text})
                                    }}/>
                         <TouchableOpacity
                             onPress={() => this.props.navigation.navigate('searchdata', {'indexstr': this.state.search_text})}>
                             <Image source={require('./images/logos/search.png')}
-                                   style={{resizeMode: 'contain', maxHeight: 50, maxWidth: 50}}/>
+                                   style={{resizeMode: 'contain', maxHeight: 40, maxWidth: 40}}/>
                         </TouchableOpacity>
                     </View>
                     <CompleteMenue navigation={this.props.navigation}/>

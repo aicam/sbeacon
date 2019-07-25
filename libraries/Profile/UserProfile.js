@@ -197,6 +197,7 @@ export default class UserProfile extends React.Component {
 
 
                             <View style={{flexDirection: 'row'}}>
+
                                 <View style={{
                                     alignItems: 'center',
                                     flex: 1,
@@ -204,6 +205,7 @@ export default class UserProfile extends React.Component {
                                     borderWidth: 1,
                                     borderColor: '#e0ebeb'
                                 }}>
+                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('webview', {url: 'http://beacongameserver.ir/support/'})}>
                                     <Image source={require('../../images/logos/support.png')}
                                            style={{height: 50, width: 50, marginTop: 10}}/>
                                     <Text style={{
@@ -212,14 +214,17 @@ export default class UserProfile extends React.Component {
                                         textAlign: 'center',
                                         fontFamily: 'IRANSansMobile'
                                     }}>پشتیبانی</Text>
+                                    </TouchableOpacity>
                                 </View>
                                 <View style={{
-                                    alignItems: 'center',
                                     flex: 1,
-                                    flexDirection: 'column',
-                                    borderWidth: 1,
-                                    borderColor: '#e0ebeb'
                                 }}>
+                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('webview', {url: 'http://beacongameserver.ir/aboutus/AU.html'})}
+                                    style={{alignItems: 'center',
+                                        justifyContent:'center',
+                                        flexDirection: 'column',
+                                        borderWidth: 1,
+                                        borderColor: '#e0ebeb'}}>
                                     <Image source={require('../../images/logos/faq.png')}
                                            style={{height: 50, width: 50, opacity: 0.3, marginTop: 10}}/>
                                     <Text style={{
@@ -230,6 +235,7 @@ export default class UserProfile extends React.Component {
                                         fontFamily: 'IRANSansMobile'
                                     }}>سوالات
                                         متداول</Text>
+                                    </TouchableOpacity>
                                 </View>
                                 <View style={{
                                     alignItems: 'center',

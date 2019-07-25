@@ -10,7 +10,7 @@ import {
     ActivityIndicator,
     Alert
 } from 'react-native';
-import TimerCountdown from "./More";
+import TimerCountdown from "react-native-countdown-component";
 
 
 export default class CategoryADs extends React.Component {
@@ -162,7 +162,7 @@ export default class CategoryADs extends React.Component {
             cid_max: items_number_max,
             category_title: ""
         });
-        this._state_cid(this.props.cid2)
+        this._state_cid(this.props.cid2);
         fetch('http://parsbeacon.ir/requests/more?option=' + this.props.cid2 + '&offset=0').then(
             (response) => {
                 response.json().then((jsondata) => {
@@ -273,10 +273,8 @@ export default class CategoryADs extends React.Component {
                                         marginLeft: 10,
                                         borderWidth: 1,
                                         borderRadius: 20,
-                                        paddingRight: 5,
-                                        paddingLeft: 5,
-                                        paddingTop: 3,
-
+                                        padding:5,
+                                        alignItems: 'center',
                                         borderColor: '#00701a', backgroundColor: '#00701a'
                                     }}>
                                         <Text style={{fontSize: 15, marginRight: 5, color: 'white'}}>{item.rate}</Text>
@@ -289,13 +287,10 @@ export default class CategoryADs extends React.Component {
                                     <View style={{
                                         justifyContent: 'center',
                                         flexDirection: 'row',
-                                        marginTop: 3,
                                         borderWidth: 1,
                                         borderRadius: 20,
-                                        paddingRight: 5,
-                                        paddingLeft: 5,
-                                        paddingTop: 3,
-
+                                        padding:5,
+                                        alignItems: 'center',
                                         borderColor: '#00bfd6',
                                         backgroundColor: '#00bfd6'
                                     }}>
@@ -312,9 +307,8 @@ export default class CategoryADs extends React.Component {
                                     <View style={{
                                         borderWidth: 1,
                                         borderRadius: 20,
-                                        paddingRight: 5,
-                                        paddingLeft: 5,
-                                        paddingTop: 3,
+                                        padding:5,
+                                        alignItems: 'center',
                                         borderColor: '#ff403c',
                                         backgroundColor: '#ff403c', fontFamily: 'IRANSansMobile'
                                     }}>
@@ -322,10 +316,6 @@ export default class CategoryADs extends React.Component {
                                             fontSize: 15,
                                             color: 'white'
                                         }}> {item.bought} خرید </Text>
-                                    </View>
-                                    <View style={{marginRight: 10}}>
-                                        <Image source={require('../images/logos/notscoin.png')}
-                                               style={{resizeMode: 'contain', width: 35, height: 35}}/>
                                     </View>
                                 </View>
                                 <View style={{
@@ -338,7 +328,7 @@ export default class CategoryADs extends React.Component {
                                            source={require('../images/logos/Timer.png')}
                                            style={{width: 35, height: 35, marginRight: 30, borderRadius: 40}}/>
                                     {item.typeoftime == 2 && <TimerCountdown
-                                        initialSecondsRemaining={item.timers}
+                                        until={item.timers}
                                         style={{fontSize: 25}}
                                     />}
                                     {item.typeoftime == 1 &&
@@ -352,12 +342,13 @@ export default class CategoryADs extends React.Component {
                             </View>
                         )}
 
-                        <View style={{width: '100%', height: 50, backgroundColor: '#999966', alignItems: 'stretch'}}>
+                        <View style={{width: '100%', height: 50, backgroundColor: '#007AFF', alignItems: 'stretch'}}>
                             <TouchableOpacity onPress={() => this.fetch_new_data()}>
                                 <Text style={{
                                     fontSize: 25,
                                     fontFamily: 'IRANSansMobile',
-                                    textAlign: 'center'
+                                    textAlign: 'center',
+                                    color:'white'
                                 }}>بیشتر</Text>
                             </TouchableOpacity>
                         </View>

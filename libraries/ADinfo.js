@@ -11,7 +11,8 @@ import {
     ActivityIndicator, AsyncStorage,
     KeyboardAvoidingView,
     ImageBackground,
-    Platform, StyleSheet
+    Platform, StyleSheet,
+    Linking
 } from 'react-native'
 import Share from 'react-native-share';
 import CountDown from 'react-native-countdown-component';
@@ -30,9 +31,9 @@ export default class ADinfo extends Component {
             offset: 0,
             comments_loaded: false,
             ad_id: 1,
-            color_text_1: '#b3b300',
-            color_text_2: '#b3b300',
-            color_text_3: '#808000'
+            color_text_1: '#5AC8FA',
+            color_text_2: '#5AC8FA',
+            color_text_3: '#5856D6'
         }
     }
 
@@ -104,16 +105,16 @@ export default class ADinfo extends Component {
     _changeText(id){
         switch (id) {
             case 1:
-                this.setState({color_text_1: '#808000',color_text_2: '#b3b300',
-                    color_text_3: '#b3b300'});
+                this.setState({color_text_1: '#5856D6',color_text_2: '#5AC8FA',
+                    color_text_3: '#5AC8FA'});
                 break;
             case 2:
-                this.setState({color_text_1: '#b3b300',color_text_2: '#808000',
-                    color_text_3: '#b3b300'});
+                this.setState({color_text_1: '#5AC8FA',color_text_2: '#5856D6',
+                    color_text_3: '#5AC8FA'});
                 break;
             case 3:
-                this.setState({color_text_1: '#b3b300',color_text_2: '#b3b300',
-                    color_text_3: '#808000'});
+                this.setState({color_text_1: '#5AC8FA',color_text_2: '#5AC8FA',
+                    color_text_3: '#5856D6'});
                 break;
         }
         this.setState({text_state: id});
@@ -159,12 +160,12 @@ export default class ADinfo extends Component {
                 {this.state.loaded &&
                 <ScrollView style={{flex:1}}>
 
-                    <View style={{flex: 3, justifyContent: 'space-between', flexDirection: 'row',}}>
+                    <View style={{flex: 3, justifyContent: 'space-between', flexDirection: 'row'}}>
                         <View style={{flex: 4, flexDirection: 'column', padding: 20}}>
                             <Text
                                 style={{marginTop: 20, fontSize: 20, textAlign: 'right'}}>{this.state.data.title}</Text>
                             <View style={{flexDirection: 'row', marginTop: 10, justifyContent: 'flex-end'}}>
-                                <Text style={{fontSize: 15, marginRight: 10}}>{this.state.data.rate}</Text>
+                                <Text style={{fontSize: 15, marginRight: 10}}>{this.state.data.rate.toString()}</Text>
                                 <TouchableOpacity onPress={() => this.update_star(1)}>
                                     <Image source={require('../images/logos/star_active.png')}
                                            style={{width: 20, height: 20, marginRight: 3}}/>
@@ -202,21 +203,21 @@ export default class ADinfo extends Component {
                                 style={{fontSize: 15, marginTop: 10, textAlign: 'right', fontFamily: 'IRANSansMobile'}}>دسته
                                 بندی:
                                 {this.state.data.category.map((item) =>
-                                    item.name + ' ,'
+                                    item.name + ' '
                                 )}</Text>
                             <View style={{width: '100%', height: 30, justifyContent: 'flex-end', flexDirection: 'row'}}>
                                 <View style={{flexDirection: 'row'}}>
-                                    {!this.state.data.Scoin_available && <Text style={{
+                                    {(this.state.data.Scoin_available == 0) && <Text style={{
                                         color: 'black',
                                         fontSize: 15,
                                         fontFamily: 'IRANSansMobile'
                                     }}> هزارتومان </Text>}
-                                    {this.state.data.Scoin_available && <Text style={{
+                                    {this.state.data.Scoin_available == 1 && <Text style={{
                                         color: 'black',
                                         fontSize: 15,
                                         fontFamily: 'IRANSansMobile'
                                     }}> <Image source={require("../images/scoin.png")} style={{width:15,height:15}} />  کوین</Text>}
-                                    <Text style={{color: 'black', fontSize: 15}}>{this.state.data.cost}</Text>
+                                    <Text style={{color: 'black', fontSize: 15}}>{this.state.data.cost.toString()}</Text>
                                     <Text style={{
                                         color: '#707070',
                                         fontStyle: 'italic',
@@ -228,10 +229,17 @@ export default class ADinfo extends Component {
                                 if (this.state.data.Scoin_available) {
                                     this.props.navigation.navigate('webview', {url: 'http://parsbeacon.ir/requests/Buy?ad_id=' + this.state.data.id + '&userID=' + this.state.username})
                                 } else {
-                                    if (this.state.data.min_level < this.state.level)
-                                        this.props.navigation.navigate('webview', {url: 'http://parsbeacon.ir/requests/foreign_ad?ad_id=' + this.state.data.id});
+                                    if (this.state.data.min_level <= this.state.level) {
+                                        Linking.canOpenURL(this.state.data.ad_link.toString()).then(supported => {
+                                            if (supported) {
+                                                Linking.openURL(this.state.data.ad_link.toString());
+                                            } else {
+                                                alert("امکان بازکردن مرورگر وجود ندارد لطفا این دسترسی را برای اپلیکیشن تنظیم کنید.")
+                                            }
+                                        });
+                                    }
                                     else
-                                        Alert.alert(" شما هنوز به سطح " + this.state.data.min_level + " نرسیده اید.")
+                                        Alert.alert(" شما هنوز به سطح " + this.state.data.min_level.toString() + " نرسیده اید.")
                                 }
                             }}>
                                 <LinearGradient colors={['#0078ff', '#00edff']} start={{ x: 0, y: 1 }} end={{ x: 1, y: 1 }} style={{
@@ -317,7 +325,7 @@ export default class ADinfo extends Component {
                             paddingHorizontal: '10%',
                             paddingVertical: 8
                         }}>
-                            <Text style={{fontSize: 15, color: '#f2f2f2'}}>معرفی</Text>
+                            <Text style={{fontSize: 15, color: '#f2f2f2',fontFamily: 'IRANSansMobile',textAlign:'center'}}>معرفی</Text>
                         </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this._changeText(3)}>
@@ -326,9 +334,10 @@ export default class ADinfo extends Component {
                             borderTopStartRadius: 15,
                             backgroundColor: this.state.color_text_3,
                             paddingHorizontal: '10%',
-                            paddingVertical: 8
+                            paddingVertical: 8,
+
                         }}>
-                            <Text style={{fontSize: 15, color: '#f2f2f2'}}>امکانات</Text>
+                            <Text style={{fontSize: 15, color: '#f2f2f2',fontFamily: 'IRANSansMobile',textAlign:'center'}}>امکانات</Text>
                         </View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this._changeText(2)}>
@@ -337,9 +346,9 @@ export default class ADinfo extends Component {
                             borderTopStartRadius: 15,
                             backgroundColor: this.state.color_text_2,
                             paddingHorizontal: '10%',
-                            paddingVertical: 8
+                            paddingVertical: 8,
                         }}>
-                            <Text style={{fontSize: 15, color: '#f2f2f2'}}>روش استفاده</Text>
+                            <Text style={{fontSize: 15, color: '#f2f2f2',fontFamily: 'IRANSansMobile',textAlign:'center'}}>روش استفاده</Text>
                         </View>
                         </TouchableOpacity>
                     </View>
@@ -489,7 +498,7 @@ export default class ADinfo extends Component {
                                                     color: '#707070',
                                                     fontStyle: 'italic',
                                                     textDecorationLine: 'line-through'
-                                                }}> {item.old_cost} </Text>
+                                                }}> {item.old_cost.toString()} </Text>
                                             </View>
                                             }
                                         </View>
@@ -546,7 +555,8 @@ export default class ADinfo extends Component {
                                 paddingLeft: 10,
                                 borderWidth: 1,
                                 borderColor: '#66a3ff',
-                                borderRadius: 10
+                                borderRadius: 10,
+                                marginBottom:10
                             }} onPress={() => {
                                 this.comments_view();
                             }}>نظرات بیشتر</Text>

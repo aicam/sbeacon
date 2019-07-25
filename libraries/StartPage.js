@@ -70,7 +70,7 @@ export default class StartPage extends Component {
                     <Image source={require('../images/register/scoin.png')}
                            style={{marginTop: 20, resizeMode: 'contain', maxWidth: 200, maxHeight: 200}}/>
                     <FadeInView>
-                        <View style={{marginTop: 100}}>
+                        <View style={{marginTop: '20%'}}>
                             <Button onPress={() => {
                                 if (goHomepage) {
                                     this.props.navigation.navigate('Firstpage', {user: username})
@@ -79,7 +79,7 @@ export default class StartPage extends Component {
                                 }
                             }}
                                     titleStyle={{fontSize: 20, fontFamily: 'IRANSansMobile'}}
-                                    buttonStyle={{height: 60, width: 200, backgroundColor: '#7CCFFF'}}
+                                    buttonStyle={{height: 60, width: 200, backgroundColor: '#7CCFFF',borderRadius:20,overflow:'hidden'}}
                                     title="ثبت نام"
                             />
                             <Button onPress={() => {
@@ -90,7 +90,7 @@ export default class StartPage extends Component {
                                 }
                             }}
                                     titleStyle={{fontSize: 20, fontFamily: 'IRANSansMobile'}}
-                                    buttonStyle={{height: 60, width: 200, borderColor: '#007DC4'}}
+                                    buttonStyle={{height: 60, width: 200, borderColor: '#007DC4',borderRadius:20,overflow:'hidden',marginTop:10}}
                                     title="ورود"
                                     type="outline"
                             />

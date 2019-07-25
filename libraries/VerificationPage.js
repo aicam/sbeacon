@@ -168,7 +168,7 @@ export default class VerificationPage extends Component {
                         }
                     }}
                             titleStyle={{fontSize: 25, fontFamily: 'IRANSansMobile'}}
-                            buttonStyle={{height: 60, width: 200, backgroundColor: '#5CC3FE'}}
+                            buttonStyle={{height: 60, width: 200, backgroundColor: '#5CC3FE',borderRadius:20,overflow:'hidden'}}
                             title="تـأیید"
                     />
                 </View>

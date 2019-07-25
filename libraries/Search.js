@@ -10,7 +10,7 @@ import {
     ActivityIndicator,
     Alert
 } from 'react-native';
-import TimerCountdown from "./HomePage/CompleteHomePage";
+import TimerCountdown from "react-native-countdown-component";
 
 
 export default class Search extends React.Component {
@@ -183,7 +183,7 @@ export default class Search extends React.Component {
                                                    source={require('../images/logos/Timer.png')}
                                                    style={{width: 35, height: 35, marginRight: 30, borderRadius: 40}}/>
                                             {item.typeoftime == 2 && <TimerCountdown
-                                                initialSecondsRemaining={item.timers}
+                                                until={item.timers}
                                                 style={{fontSize: 25}}
                                             />}
                                             {item.typeoftime == 1 &&
@@ -197,9 +197,9 @@ export default class Search extends React.Component {
                                 </TouchableOpacity>)}
                         </ScrollView>
                         }
-                        <View style={{width: '100%', height: 50, backgroundColor: '#999966', alignItems: 'stretch'}}>
+                        <View style={{width: '100%', height: 50, backgroundColor: '#007AFF', alignItems: 'stretch'}}>
                             <TouchableOpacity onPress={() => this.fetch_new_data()}>
-                                <Text style={{fontSize: 25, fontFamily: 'traffic', textAlign: 'center'}}>بیشتر</Text>
+                                <Text style={{fontSize: 25, fontFamily: 'traffic', textAlign: 'center', color:'white'}}>بیشتر</Text>
                             </TouchableOpacity>
                         </View>
 
